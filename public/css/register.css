@@ -1,78 +1,37 @@
-.register-formulario {
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.register-parrafo{
+    font-family: 'roboto';
+    font-size: 20px;
+    text-align: center;
+    font-weight: 200;
    
-    padding: 25px;
-   margin-top:10px ;
-    width: 80%;
 }
-
-label {
-    text-transform: uppercase;
+.register_contenedor {
     position: relative;
-    padding: 3px;
-
-}
-
-.register-formulario-label-input {
-    width: 90%;
-    height: 20px;
-    border-radius: none;
-    margin-top: 8px;
-    margin-bottom: 5px;
-    display: inline;
-    border-radius:1px solid black;
-
-}
-.register-formulario-label-contrasena{
-    width: 100%;
-    border-radius: none;
-    margin: 0;
-    padding: 3px;
-}
-.input-eyes{
-    display:flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-}
-.ojo{
- margin-top: 2px;
- position:relative;
- right:25px;
-}
-.fa-regular{
-margin: auto;
-}
-.enviar {
-    width: 20%;
-
-    display: flex;
-    justify-content: left;
-    margin-top: 10px;
-    margin-left: 20px;
-    height: 20px;
-    margin-bottom: 15px;
-    
-}
-
-.register-btn {
-    width: 80%;
-    height: 30px;
-    background: fuchsia;
-    color: white;
-    border: 1px black solid;
+    margin-left: 6%;
+    width: 85%;
+    border: 3px solid #dc3ae2;
     border-radius: 15px;
-    display: block;
-    margin: auto;
-    padding: 4px;
+    padding: 7.5em 2.5em 4em 2.5em;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.3);
+}
+.register-header{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dc3ae2;
+    width: 140px;
+    height: 70px;
+    border-radius: 0 0 20px 20px ;
 }
 
 .register-h4 {
     font-family: 'roboto';
-    font-size: 15px;
+    font-size: 20px;
     text-align: center;
     font-weight: 200;
 }
@@ -84,111 +43,22 @@ a {
 }
 /*******tablet******/
 @media (min-width:768px) {
-    .register-formulario {
-       
-        display: flex;
-        flex-direction: column;
-        
-        width: 90%;
-        padding: 15px;
-       
+    .register_contenedor{
+    margin-left: 100px;
+    width: 450px;
     }
-    .register-parrafo{
-        font-size: 1.3em;
-        padding: 10px;
-        margin-left: 5px;
-    }
-    .register-formulario-label {
-        margin-bottom: 15px;
-       
-       
-        
-    }
-
-    .register-formulario-label-input {
-        width: 95%;
-        height: 30px;
-        margin-top: 0;
-        padding: 3px;
-        
-       
-    }
-  .register-formulario-label-contrasena{
-        width: 100%;
-        border-radius: none;
-        margin: 0;
-       height: 30px;
-        padding: 3px;
-        
-  }
-  ::placeholder{
-    background-color: rgb(210, 203, 203, 0.5);
- 
-}
-    .enviar {
-       width: 10%;
-       border: 1px solid black;
-       display: flex;
-       justify-content: center;
-       margin: auto;
-       margin-top: 15px;
-       margin-bottom: 15px;
-       margin-left: 230px;
-       
-
-    }
-
-    .register-btn {
-        width: 40%;
-        margin: auto;
+    .register-parrafo{  
+        font-size: 30px; 
+        margin-left: 44px;
     }
 }
-    @media (min-width: 1440px) {
-        .register-parrafo{
-            width: 100%;
-            font-size: 1.3em;
-            text-align: center;
-            
-        }
-        .one{
-            width: 100%;
-            font-size: 1.3em;
-            text-align: start;
-            
-        }
-        
-        .register-formulario {
-          
-        
-            width: 60%;
-           padding: 5px;
-           margin: auto;
-           
-        }
-        
-        .register-formulario-label {
-            margin-top: 10px;
-        }
-
-        .register-formulario-label-input {
-         width: 97%;  
-
-        }
-        .register-formulario-label-contrasena{
-            width: 100%;
-            border-radius: none;
-            margin: 0;
-           height: 30px;
-            padding: 3px;
-            
-      }
-        .enviar {
-           width: 100px;
-           height: 30px;
-           position: relative;
-           left: 200px;
-           margin-bottom: 20px;
-        }
-
-    
+@media (min-width: 1440px){
+    .register_contenedor {
+        position: relative;
+        margin-left: 10%;
+        width: 85%;
     }
+    .register-parrafo-one{
+        font-size: 20px; 
+    }
+}

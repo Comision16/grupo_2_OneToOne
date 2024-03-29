@@ -1,128 +1,106 @@
 .box__card {
     max-width: 400px;
     width: 100%;
-    margin: 50px auto;
+    margin: 50px auto;   
 }
-
-.form {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.article--login {
-    text-align: center;
-}
-
-.form__box {
-    width: 100%;
-    padding-left: 30px;
-    padding-right: 30px
-}
-
-.form__box--fill {
-    margin-bottom: 30px
-}
-
-.form__box--remember a{
-    margin-left: 70px;
-    color: black;
-    text-decoration: none;
-}
-
-.form__box--remember {
-    margin-bottom: 70px;
-    text-align: center;
-}
-
-.form__box--position {
+.login_contenedor{
     position: relative;
+    margin-left: 6%;
+    width: 85%;
+    border: 3px solid #dc3ae2;
+    border-radius: 15px;
+    padding: 7.5em 2.5em 4em 2.5em;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.3);
 }
-
-.form__box--position span {
+.login-header{
     position: absolute;
-    right: 10px;
-    top: 20px;
-}
-
-.form__label {
-    margin-bottom: 20px;
-}
-
-.form__input {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid black;
-    margin-top: 10px;
-    background-color: #f7f5f5;
-}
-
-.form__redes {
-    font-size: 50px;
-    margin-bottom: 100px;
-    margin-top: 50px;
-    margin-left: 70px;
-    color: black;
-}
-
-.form__redes a i {
-    color: black
-}
-
-.form__buttom {
-    position: relative;
-    bottom: 100px;
-    margin-left: 5px;
-    text-align: center;
-}
-
-.form__buttom p a {
-    color: black
-}
-
-.buttom__login {
-    background-color: #ff12bc;
-    color: white;
-    padding: 10px;
-    border-radius: 25px;
-    border: none;
-    width: 250px;
-    font-size: 25px
-}
-
-.box__article {
-    text-align:center
-}
-
-.article__i {
-    font-size: 40px;
-}
-
-.box__article {
-    margin: 50px auto;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px
+    align-items: center;
+    justify-content: center;
+    background-color: #dc3ae2;
+    width: 140px;
+    height: 70px;
+    border-radius: 0 0 20px 20px ;
+}
+.login-header .card-title {
+    font-size: 30px;
+    color: #272727;
+}
+.card-title {
+ margin-left: 18px ;
+}
+.input_box{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+.form-control{
+    width: 100%;
+    height: 55px;
+    font-size: 16px;
+    background: transparent;
+    color: #000000;
+    padding-inline: 20px 50px;
+    border: 2px solid #dc3ae2;
+    border-radius: 30px;
+    outline: none;
+}
+.form-label #password{
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    transition: .2s ease-in-out;
 }
 
-.main__h3--end {
-    text-align: center
+.fa-user{
+    position: absolute;
+    top: 54px;
+    right: 25px;
+    font-size: 20px;
 }
+.w-100{
+    width: 100%;
+    height: 50px;
+    background: #dc3ae2;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+
+}
+.redes_login{
+    margin-left: 50px;
+}
+
+.tiktok1{
+    font-family: 'Font Awesome 5 Brands'; 
+    font-size: 36px;
+    background-color: #000000;
+    background-clip: text ;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .form__buttom{
+    margin-left: 5px ;
+  }
 
 @media (min-width:768px) {
-    .item {
-        display: flex;
-        flex-wrap: wrap;
-        width: 30%;
-        text-align: center
-    }
 
+.login_contenedor{
+    margin-left: -4%;
+    width: 450px;
 }
-
-@media (min-width: 1440px) {
-    .form__redes {
-       margin-left: 82px;
-      
-    }   
-
+.redes_login{
+    margin-left: 110px;
+} 
+  .form__buttom{
+    margin-left: 75px ;
+  }
 }
