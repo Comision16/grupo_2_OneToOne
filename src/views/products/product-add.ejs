@@ -1,137 +1,166 @@
 <!DOCTYPE html>
 <html lang="es">
-   <!-- //HEAD PARTIALS-->
-   <%- include('../partials/head',{
-    title:'Nuevo producto'
-})  %>
+<!-- //HEAD PARTIALS-->
+<%- include('../partials/head',{ title:'Nuevo producto' }) %>
 
-<body style="background-image: url('/img/home/logoHome.png'); background-repeat: repeat;">
-  <%- include('../partials/header-admin') %>
-   
+  <body style="background-image: url('/img/home/logoHome.png'); background-repeat: repeat;">
+    <%- include('../partials/header-admin') %>
 
-    <main class="container">
+
+      <main class="container">
         <section class="row my-5">
-            <div class="col-12 col-md-10 mx-auto">
-                <div class="card" style="background-color: #fff; color: #000;">
-                    <div class="card-header d-flex justify-content-between" style="background-color: rgb(61, 61, 61); color: #ffffff;">
-                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/admin" class="text-primary">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Agregar producto </li>
-                            </ol>
-                        </nav>
+          <div class="col-12 col-md-10 mx-auto">
+            <div class="card" style="background-color: #fff; color: #000;">
+              <div class="card-header d-flex justify-content-between">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin" class="text-primary">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Agregar producto </li>
+                  </ol>
+                </nav>
+              </div>
+              <div class="card-body ">
+                <form action="/productos/crear" method="POST" class="row" enctype="multipart/form-data">
+                  <h3>Nuevo producto</h3>
+                  <hr>
+                  <div class="col-12 col-md-6 mb-3">
+                    <div class="form-floating ">
+                      <input type="text" name="name"
+                        class="form-control <%= locals.errors && errors.name ? 'is-invalid' : null %>" id="name"
+                        value="<%= locals.old && old.name ? old.name : null %>">
+                      <label for="name">Nombre</label>
+                      <small class="text-danger ms-2">
+                        <%= locals.errors && errors.name ? errors.name.msg : null %>
+                      </small>
                     </div>
-                    <div class="card-body ">
-                        <form action="/productos/crear" method="POST" class="row" enctype="multipart/form-data">
-                            <h3>Nuevo producto</h3>
-                            <hr>
-                            <div class="col-12 col-md-6 mb-3">
-                              <div class="form-floating ">
-                              <input type="text" name="name" class="form-control <%= locals.errors && errors.name ? 'is-invalid' : null %>"    id="name" value="<%= locals.old && old.name ? old.name : null %>" >
-                              <label for="name" >Nombre</label>
-                              <small class="text-danger ms-2">
-                                <%= locals.errors && errors.name ? errors.name.msg : null %>
-                              </small>
-                            </div>
-                            </div>
+                  </div>
+                  <div class="col-12 col-md-6 mb-3">
+                    <div class="form-floating">
+                      <select name="categoryId" class="form-select" <%=locals.errors && errors.categoryId? 'is-invalid'
+                        : null %> id="category" aria-label="Floating label select example" value="<%= locals.old &&
+                          old.categoryId ? old.categoryId : null %>">
+                          <option value="" selected hidden>Selecione...</option>
+                          <% categories.forEach(category=> { %>
+                            <option value="<%= category.id %>">
+                              <%= category.name %>
+                            </option>
+                            <% }) %>
+                      </select>
+                      <label for="category">Categoría</label>
+                      <small class="text-danger ms-2">
+                        <%= locals.errors && errors.categoryId ? errors.categoryId.msg : null %>
+                      </small>
+                    </div>
+                  </div>
 
-                            <div class="col-12 col-md-6 mb-3">
-                              <div class="form-floating">
-                                  <select multiple name="colorsId" class="form-select <%= locals.errors && errors.colorsId ? 'is-invalid' : null %>" id="colorsId" aria-label="Floating label select example" >
-                                      <% colors.forEach(color => { %>
-                                          <option value="<%= color.id %>"><%= color.name %></option>
-                                      <% }) %>
-                                  </select>
-                                  <label for="colors">Colores</label>
-                                  <small class="text-danger ms-2">
-                                      <%= locals.errors && errors.colorsId ? errors.colorsId.msg : null %>
-                                  </small>
-                              </div>
-                          </div>
+                  <div class="col-12 col-md-6 mb-3">
+                    <div class="form-floating" <%=locals.errors && errors.price ? 'is-invalid' : null %> value="<%=
+                        locals.old && old.price ? old.price : null %>">
+                        <input name="price" type="text" class="form-control" id="price">
+                        <label for="address">precio</label>
+                        <small class="text-danger ms-2">
+                          <%= locals.errors && errors.price ? errors.price.msg : null %>
+                        </small>
+                    </div>
+                  </div>
 
-                          <div class="col-12 col-md-6 mb-3">
-                            <div class="form-floating">
-                                <select multiple name="sizesId" class="form-select <%= locals.errors && errors.sizesId ? 'is-invalid' : null %>" id="sizes" aria-label="Floating label select example" value="<%= locals.old && old.sizesId ? old.sizesId : null %>"  >
-                                    <option value="" selected hidden></option>
-                                    <% sizes.forEach(size => { %>
-                                    <option value="<%= size.id %>"><%= size.name %></option>
-                                    <% }) %>
-                                </select>
-                                <label for="sizes">Talla</label>
-                                <small class="text-danger ms-2">
-                                    <%= locals.errors && errors.sizesId ? errors.sizesId.msg : null %>
-                                </small>
-                            </div>
+                  <div class="col-12 col-md-6 mb-3">
+                    <div class="form-floating">
+                      <input name="descount" type="text" class="form-control" id="descount">
+                      <label for="address">Descuento</label>
+                    </div>
+                  </div>
+
+                  <div class="col-12 mb-3">
+                    <label for="" class="form-label">Colores</label>
+                    <div class="d-flex flex-column flex-md-row gap-3 flex-wrap">
+                      <% colors.forEach(color=> { %>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="colors" value="<%= color.id %>" id="color<%= color.id %>">
+                          <label class="form-check-label" for="color<%= color.id %>">
+                            <%= color.name %>
+                          </label>
                         </div>
-
-                            <div class="col-12 col-md-6 mb-3">
-                              <div class="form-floating" <%= locals.errors && errors.price ? 'is-invalid' : null %> value="<%= locals.old && old.price ? old.price : null %>">
-                                <input name="price" type="text" class="form-control" id="price">
-                                <label for="address">precio</label>
-                                <small class="text-danger ms-2">
-                                  <%= locals.errors && errors.price ? errors.price.msg : null %>
-                                </small>
-                              </div>
-                            </div>
-
-                            <div class="col-12 col-md-6 mb-3">
-                              <div class="form-floating">
-                                <input name="descount" type="text" class="form-control" id="descount">
-                                <label for="address">Descuento</label>
-                              </div>
-                            </div>
-
-                            <div class="col-12 col-md-6 mb-3">
-                              <div class="form-floating">
-                                <select name="categoryId" class="form-select" <%= locals.errors && errors.categoryId? 'is-invalid' : null %> id="category" aria-label="Floating label select example" value="<%= locals.old && old.categoryId ? old.categoryId : null %>">
-                                  <option value="" selected hidden>Selecione...</option>
-                                   <% categories.forEach(category=> { %>
-                                    <option value="<%= category.id %>"><%= category.name %></option>
-                                   <% }) %>
-                                </select>
-                                <label for="category">Categoría</label>
-                                <small class="text-danger ms-2">
-                                  <%= locals.errors && errors.categoryId ? errors.categoryId.msg : null %>
-                                </small>
-                              </div>
-                            </div>
-
-                            <div class="col-12 col-md-3 mb-3">
-                              <input name="image" type="file" class="form-control" id="image" hidden>
-                              <label class="btn btn-lg btn-outline-dark w-100" for="image">Imagen principal</label>
-                              <small class="text-danger ms-2"><%= (locals.errors && errors.image) && errors.image.msg %></small>
-                            </div>
-                            
-                            <div class="col-12 col-md-3 mb-3">
-                              <input name="images" type="file" class="form-control" id="images" hidden multiple>
-                              <label class="btn btn-lg btn-outline-dark w-100" for="images">Imágenes</label>
-                            </div>
-
-                            <div class="col-12 mb-3">
-                              <div class="form-floating" <%= locals.errors && errors.description ? 'is-invalid' : null %> value="<%= locals.old && old.description ? old.description : null %>">
-                                <textarea name="description" class="form-control" id="description" style="height: 200px;"></textarea>
-                                <label for="description">Descripción</label>
-                                <small class="text-danger ms-2">
-                                  <%= locals.errors && errors.description ? errors.description.msg : null %>
-                                </small>
-                              </div>
-                            </div>
-                           
-                            <div class="col-12 d-flex justify-content-end">
-                              <button class="btn btn-lg btn-dark">Guardar cambios</button>
-                            </div>
-                        </form>
+                        <% }) %>
                     </div>
-                </div>
-            </div>
-        </section>
-    </main>
+                    <small class="text-danger ms-2">
+                      <%= locals.errors && errors.colors ? errors.colors.msg : null %>
+                    </small>
+                  </div>
 
-   
-    <script src="tu_archivo_de_script.js"></script>
+                  <div class="col-12 mb-3">
+                    <label for="" class="form-label">Talles</label>
+                    <div class="d-flex flex-column flex-md-row gap-3 flex-wrap">
+                      <% sizes.forEach(size=> { %>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="sizes" value="<%= size.id %>" id="size<%= size.id %>">
+                          <label class="form-check-label" for="size<%= size.id %>">
+                            <%= size.name %>
+                          </label>
+                        </div>
+                        <% }) %>
+                    </div>
+                    <small class="text-danger ms-2">
+                      <%= locals.errors && errors.sizes ? errors.sizes.msg : null %>
+                    </small>
+                  </div>
+
+
+                  <div class="col-12 mb-3">
+                    <div class="form-floating" <%=locals.errors && errors.description ? 'is-invalid' : null %> value="
+                      <%= locals.old && old.description ? old.description : null %>">
+                        <textarea name="description" class="form-control" id="description"
+                          style="height: 200px; resize: none;"></textarea>
+                        <label for="description">Descripción</label>
+                        <small class="text-danger ms-2">
+                          <%= locals.errors && errors.description ? errors.description.msg : null %>
+                        </small>
+                    </div>
+                  </div>
+                  <div class="col-12 p-4">
+                    <div class="row">
+                      <div class="col-12 col-lg-3">
+                        <label for="image" class="form-label" style="cursor: pointer;">Imagen principal</label>
+                        <input name="image" type="file" class="form-control" id="image" hidden>
+                        <small class="text-danger ms-2">
+                          <%= (locals.errors && errors.image) && errors.image.msg %>
+                        </small>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-</body>
+                        <div id="box-image" class=" border d-flex justify-content-center gap-2">
+
+                        </div>
+                      </div>
+                      
+                      <div class="col-12 col-lg-9">
+                        <label for="images" class="form-label" style="cursor: pointer;">Imágenes</label>
+                        <input name="images" type="file" class="form-control" id="images" hidden multiple>
+
+                        <div id="box-images" class="w-100 border d-flex flex-column flex-lg-row justify-content-center align-items-center gap-2" >
+
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                 
+
+                  <div class="col-12 d-flex justify-content-end">
+                    <button class="btn btn-lg btn-dark">Guardar cambios</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+
+      <script src="/javascripts/product-add.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
 </html>
 
 
@@ -139,6 +168,7 @@
 
 
 
-  <%- include('../partials/scripts') %>
-</body>
-</html>
+<%- include('../partials/scripts') %>
+  </body>
+
+  </html>

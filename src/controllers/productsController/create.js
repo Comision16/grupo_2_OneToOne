@@ -4,9 +4,9 @@ const db = require('../../database/models');
 
 module.exports = async (req, res) => {
     const errors = validationResult(req);
-
     const image = req.files.image;
     const images = req.files.images;
+    
 
     if (errors.isEmpty()) {
         const {
@@ -14,30 +14,52 @@ module.exports = async (req, res) => {
             description,
             category,
             sizes,
-            colors,
             price,
             descount,
-            colorsId,
-            sizesId,
+            colors,
             categoryId,
             setionId
         } = req.body;
+
+        const sizesArray = typeof sizes == "string" ? [sizes] : sizes;
+        const colorsArray = typeof colors == "string" ? [colors] : colors;
+
 
         try {
             const product = await db.products.create({
                 name,
                 description,
                 category,
-                sizes,
-                colors,
                 price,
                 descount,
                 image: image ? image[0].filename : null,
-                colorsId,
-                sizesId,
                 categoryId,
                 setionId,
             });
+
+
+            const sizesDB = sizesArray.map(size => {
+                return {
+                    sizesId : size,
+                    productsId : product.id
+                }
+            });
+
+            await db.products_sizes.bulkCreate(sizesDB, {
+                validate : true
+            });
+
+            const colorsDB = colorsArray.map(color => {
+                return {
+                    colorsId : color,
+                    productsId : product.id
+                }
+            });
+
+            await db.products_colors.bulkCreate(colorsDB, {
+                validate : true
+            });
+
 
             this.images = images ? images.map(image => image.filename) : [];
 
