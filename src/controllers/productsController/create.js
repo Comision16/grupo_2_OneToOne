@@ -4,9 +4,9 @@ const db = require('../../database/models');
 
 module.exports = async (req, res) => {
     const errors = validationResult(req);
-
     const image = req.files.image;
     const images = req.files.images;
+    
 
     if (errors.isEmpty()) {
         const {
@@ -14,11 +14,9 @@ module.exports = async (req, res) => {
             description,
             category,
             sizes,
-            colors,
             price,
             descount,
-            colorsId,
-            sizesId,
+            colors,
             categoryId,
             setionId
         } = req.body;
@@ -28,13 +26,9 @@ module.exports = async (req, res) => {
                 name,
                 description,
                 category,
-                sizes,
-                colors,
                 price,
                 descount,
                 image: image ? image[0].filename : null,
-                colorsId,
-                sizesId,
                 categoryId,
                 setionId,
             });
