@@ -9,6 +9,8 @@ router.get('/carrito',cart )
 
 
 router.get('/admin', checkAdmin,admin )
+router.get('/productos/agregar', checkAdmin,admin )
+
 
 module.exports = router;
 
