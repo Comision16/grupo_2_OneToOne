@@ -3,7 +3,7 @@ const db= require('../../database/models')
 module.exports= (req,res)=>{
     const {id} = req.params;
     const products = db.products.findByPk(id, {
-        include: ['category','colors','sizes']
+        include: ['category','colors','sizes','images']
     })
     const categories = db.category.findAll({
         order: [['name']]

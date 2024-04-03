@@ -16,7 +16,7 @@
                       <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                           <ol class="breadcrumb">
                               <li class="breadcrumb-item"><a href="/admin" class="text-primary">Home</a></li>
-                              <li class="breadcrumb-item active" aria-current="page"> Editar Producto </li>
+                              <li class="breadcrumb-item active " aria-current="page"> Editar Producto </li>
                           </ol>
                       </nav>
                   </div>
@@ -35,6 +35,20 @@
                           </div>
                           <div class="col-12 col-md-6 mb-3">
                             <div class="form-floating">
+                              <select name="categoryId" class="form-select <%= (locals.errors && errors.categoryId)  && 'is-invalid'%>" id="categoryId" aria-label="Floating label select example">
+                                <option value="" selected hidden></option>
+                                <% categories.forEach(category => { %>
+                                  <option value="<%= category.id %>" <%= categoryId == category.id && 'selected'  %>><%= category.name %></option>
+                                <% }) %>
+                              </select>
+                              <label for="category">Categoría</label>
+                              <small class="text-danger ms-2">
+                                <%= locals.errors && errors.categoryId ? errors.categoryId.msg : null %>
+                              </small>
+                            </div>
+                        </div>
+                          <div class="col-12 col-md-6 mb-3">
+                            <div class="form-floating">
                               <input name="price" type="text" class="form-control" id="price" value="<%= price %>" >
                               <label for="address">Precio</label>
                               <small class="text-danger ms-2">
@@ -50,72 +64,75 @@
                             </div>
                           </div>
 
-                         
-                          <div class="col-12 col-md-6 mb-3">
-                            <div class="form-floating ">
-  
-                              <select name="colorsId" class="form-select <%= (locals.errors && errors.colorsId)  && 'is-invalid'%>" id="colors" aria-label="Floating label select example">
-                                <option value="" selected hidden></option>
-                                <% colors.forEach(colors => { %>
-                                  <option value="<%= colors.id %>" <%= colorsId == colors.id && 'selected'  %>><%= colors.name %></option>
+                          <div class="col-12 mb-3">
+                            <label for="" class="form-label">Colores</label>
+                            <div class="d-flex flex-column flex-md-row gap-3 flex-wrap">
+                              <% colors.forEach(color=> { %>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" name="colors" value="<%= color.id %>" id="color<%= color.id %>">
+                                  <label class="form-check-label" for="color<%= color.id %>">
+                                    <%= color.name %>
+                                  </label>
+                                </div>
                                 <% }) %>
-                              </select>
-                              <label for="colors">Color</label>
-                              <small class="text-danger ms-2">
-                                <%= locals.errors && errors.colorsId ? errors.colorsId.msg : null %>
-                              </small>
                             </div>
-                          </div>
-                          <div class="col-12 col-md-6 mb-3">
-                              <div class="form-floating">
-                                <select name="categoryId" class="form-select <%= (locals.errors && errors.categoryId)  && 'is-invalid'%>" id="categoryId" aria-label="Floating label select example">
-                                  <option value="" selected hidden></option>
-                                  <% categories.forEach(category => { %>
-                                    <option value="<%= category.id %>" <%= categoryId == category.id && 'selected'  %>><%= category.name %></option>
-                                  <% }) %>
-                                </select>
-                                <label for="category">Categoría</label>
-                                <small class="text-danger ms-2">
-                                  <%= locals.errors && errors.categoryId ? errors.categoryId.msg : null %>
-                                </small>
-                              </div>
-                          </div>
-                          <div class="col-12 col-md-6 mb-3">
-                            <div class="form-floating">
-                              <select name="sizesId" class="form-select <%= (locals.errors && errors.sizesId)  && 'is-invalid'%>" id="sizes" aria-label="Floating label select example">
-                                <option value="" selected hidden></option>
-                                <% sizes.forEach(sizes => { %>
-                                  <option value="<%= sizes.id %>" <%= sizesId == sizes.id && 'selected'  %>><%= sizes.name %></option>
-                                <% }) %>
-                              </select>
-                              <small class="text-danger ms-2">
-                                <%= locals.errors && errors.sizesId ? errors.sizesId.msg : null %>
-                              </small>
-                              <label for="sizes">Talla</label>
-                            </div>
-                          </div>
-
-                          <div class="col-12 col-md-3 mb-3">
-                            <input name="image" type="file" class="form-control" id="image" hidden value="<%= image %>">
-                            <label class="btn btn-lg btn-outline-dark w-100" for="image">Imagen principal</label>
                             <small class="text-danger ms-2">
-                              <%= locals.errors && errors.image ? errors.image.msg : null %>
+                              <%= locals.errors && errors.colors ? errors.colors.msg : null %>
                             </small>
                           </div>
-                          
-                          <div class="col-12 col-md-3 mb-3">
-                            <input  name="images" type="file" class="form-control" id="images" hidden multiple value="<%= image %>" >
-                            <label class="btn btn-lg btn-outline-dark w-100" for="images">Imágenes</label>
+        
+                          <div class="col-12 mb-3">
+                            <label for="" class="form-label">Talles</label>
+                            <div class="d-flex flex-column flex-md-row gap-3 flex-wrap">
+                              <% sizes.forEach(size=> { %>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" name="sizes" value="<%= size.id %>" id="size<%= size.id %>">
+                                  <label class="form-check-label" for="size<%= size.id %>">
+                                    <%= size.name %>
+                                  </label>
+                                </div>
+                                <% }) %>
+                            </div>
+                            <small class="text-danger ms-2">
+                              <%= locals.errors && errors.sizes ? errors.sizes.msg : null %>
+                            </small>
                           </div>
-
                           <div class="col-12 mb-3">
                               <div class="form-floating">
-                                  <textarea name="description" class="form-control" id="description" style="height: 200px;"><%= description %></textarea>
+                                  <textarea name="description" class="form-control" id="description" style="height: 200px; resize: none;"><%= description %></textarea>
                                   <label for="description">Descripción</label>
                                   <small class="text-danger ms-2">
                                     <%= locals.errors && errors.description ? errors.description.msg : null %>
                                   </small>
                                 </div>
+                          </div>
+                          <div class="col-12 p-4">
+                            <div class="row">
+                              <div class="col-12 col-lg-3">
+                                <label for="image" class="form-label" style="cursor: pointer;">Imagen principal</label>
+                                <input name="image" type="file" class="form-control" id="image" hidden>
+                                <small class="text-danger ms-2">
+                                  <%= (locals.errors && errors.image) && errors.image.msg %>
+                                </small>
+            
+                                <div id="box-image" class=" border d-flex justify-content-center gap-2">
+                                    <img class="img-fluid" src="/img/<%= image %>" alt="">
+                                </div>
+                              </div>
+                              
+                              <div class="col-12 col-lg-9">
+                                <label for="images" class="form-label" style="cursor: pointer;">Imágenes</label>
+                                <input name="images" type="file" class="form-control" id="images" hidden multiple>
+        
+                                <div id="box-images" class="w-100 border d-flex flex-column flex-lg-row justify-content-center align-items-center gap-2" >
+                                    <% images.forEach(image => { %>
+                                      <img class="img-fluid" src="/img/<%= image %>" alt="">
+
+                                    <% }) %>
+                                </div>
+                              </div>
+                            </div>
+                            
                           </div>
                          
                           <div class="col-12 d-flex justify-content-end">

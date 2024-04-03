@@ -11,10 +11,10 @@ module.exports = [
         .notEmpty().withMessage('El precio del producto es requerido')
         .isInt().withMessage('El precio del producto debe ser un número'),
 
-    check('colorsId')
+    check('colors')
         .notEmpty().withMessage('El color es requerido'),
 
-    check('sizesId')
+    check('sizes')
         .notEmpty().withMessage('El talle es requerido'),
 
 

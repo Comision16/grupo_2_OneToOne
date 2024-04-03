@@ -21,6 +21,10 @@ module.exports = async (req, res) => {
             setionId
         } = req.body;
 
+        const sizesArray = typeof sizes == "string" ? [sizes] : sizes;
+        const colorsArray = typeof colors == "string" ? [colors] : colors;
+
+
         try {
             const product = await db.products.create({
                 name,
@@ -32,6 +36,30 @@ module.exports = async (req, res) => {
                 categoryId,
                 setionId,
             });
+
+
+            const sizesDB = sizesArray.map(size => {
+                return {
+                    sizesId : size,
+                    productsId : product.id
+                }
+            });
+
+            await db.products_sizes.bulkCreate(sizesDB, {
+                validate : true
+            });
+
+            const colorsDB = colorsArray.map(color => {
+                return {
+                    colorsId : color,
+                    productsId : product.id
+                }
+            });
+
+            await db.products_colors.bulkCreate(colorsDB, {
+                validate : true
+            });
+
 
             this.images = images ? images.map(image => image.filename) : [];
 
