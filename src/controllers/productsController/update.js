@@ -3,30 +3,27 @@ const { existsSync, unlinkSync } = require("fs");
 const db = require('../../database/models')
 
 module.exports = (req, res) => {
-
-
-
+    const errors = validationResult(req);
     const image = req.files.image;
     const images = req.files.images;
 
-
     const {
-
         name,
         description,
         category,
         sizes,
-        colors,
         price,
         descount,
+        colors,
         categoryId,
-        setionId,
+        setionId
     } = req.body;
 
     const { id } = req.params;
 
-    const errors = validationResult(req);
 
+    const sizesArray = typeof sizes == "string" ? [sizes] : sizes;
+    const colorsArray = typeof colors == "string" ? [colors] : colors;
 
     if (errors.isEmpty()) {
         db.products.findByPk(id, {
@@ -40,21 +37,57 @@ module.exports = (req, res) => {
                 name,
                 description,
                 category,
-                sizes,
-                colors,
                 price,
-                image: image ? image[0].filename : image,
                 descount,
+                image: image ? image[0].filename : image,
                 categoryId,
                 setionId,
-
             },
                 {
                     where: {
                         id,
                     },
                 })
-                .then(() => {
+                .then( async () => {
+
+                    //eliminar las filas referidas al producto
+                    await db.products_sizes.destroy({
+                        where : {
+                            productsId : id
+                        }
+                    });
+
+                    //crear un array acorde al modelo
+                    const sizesDB = sizesArray.map(size => {
+                        return {
+                            sizesId : size,
+                            productsId : id
+                        }
+                    });
+
+                    //guadar todos los registros
+                    await db.products_sizes.bulkCreate(sizesDB, {
+                        validate : true
+                    });
+
+                    await db.products_colors.destroy({
+                        where : {
+                            productsId : id
+                        }
+                    });
+
+                    const colorsDB = colorsArray.map(color => {
+                        return {
+                            colorsId : color,
+                            productsId : id
+                        }
+                    });
+        
+                    await db.products_colors.bulkCreate(colorsDB, {
+                        validate : true
+                    });
+
+
                     if (images) {
                         products.images.forEach((image) => {
                             existsSync("public/img/" + image.file) &&

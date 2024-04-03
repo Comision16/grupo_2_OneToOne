@@ -8,19 +8,19 @@ module.exports= (req,res)=>{
     const categories = db.category.findAll({
         order: [['name']]
     })
-    const colors= db.colors.findAll({
+    const colorsdb= db.colors.findAll({
         order: [['name']]
     })
-    const sizes= db.sizes.findAll({
+    const sizesdb= db.sizes.findAll({
         order: [['name']]
     })
-    Promise.all([products, categories,colors,sizes])
-    .then(([products, categories, colors,sizes]) => {
+    Promise.all([products, categories,colorsdb,sizesdb])
+    .then(([products, categories, colorsdb,sizesdb]) => {
         return res.render('products/product-edit',{
             ...products.dataValues,
             categories,
-            colors,
-            sizes
+            colorsdb,
+            sizesdb
         })
     })
     .catch( error => console.log( error))
