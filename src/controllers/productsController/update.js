@@ -92,12 +92,9 @@ module.exports = (req, res) => {
                             validate : true
                         });
                     }
-                  
+    
 
-                  
-
-
-                    if (images) {
+                 /*    if (images) {
                         products.images.forEach((image) => {
                             existsSync("public/img/" + image.file) &&
                                 unlinkSync("public/img/" + image.file);
@@ -122,7 +119,7 @@ module.exports = (req, res) => {
                                 return res.redirect("/admin");
                             })
                         })
-                    } 
+                    }  */
                 });
 
         })
@@ -130,6 +127,7 @@ module.exports = (req, res) => {
 
             .then(product => {
                 console.log(product);
+                /* 
                 this.images = images ? images.map(image => image.filename) : [];
 
                 if (images) {
@@ -149,15 +147,15 @@ module.exports = (req, res) => {
                     })
                 } else {
                     return res.redirect("/admin");
-                }
+                } */
 
-
+                return res.redirect("/admin");
             }).catch(error => console.log(error))
 
 
             
     } else {
-        image &&
+       /*  image &&
           existsSync("public/img/" + image.filename) &&
           unlinkSync("public/img/" + image.filename);
     
@@ -167,7 +165,7 @@ module.exports = (req, res) => {
               unlinkSync("public/img/" + image);
           });
         }
-      
+       */
     
         const products = db.products.findByPk(id, {
             include : ['category','image','colors','sizes']

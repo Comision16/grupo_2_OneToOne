@@ -116,7 +116,7 @@
             
                                 <div id="box-image" class=" border d-flex justify-content-center gap-2 position-relative">
                                     <img id="image-prev" class="img-fluid" src="/img/<%= image %>" alt="">
-                                    <input name="image" type="file" class="form-control" id="image" hidden>
+                                    <input name="image" onchange="onUpdateImageMainProduct(event,'<%=id%>' )" type="file" class="form-control" id="image" hidden>
                                     <label for="image" class="btn btn-dark position-absolute bottom-0 end-0" style="cursor: pointer;"><i class="fa-solid fa-arrows-rotate"></i></label>
                                 </div>
                               </div>
@@ -130,17 +130,17 @@
                                     <% if (images[i]) { %>
                                       <div class="col-12 col-md-4 position-relative" style="height: 350px;">
                                         <img class="img-fluid" src="/img/<%= images[i].file %>" alt="image" id="image-prev<%= i %>"> 
-                                        <input name="images" type="file" class="form-control" id="image<%= i %>" hidden onchange="onChangeImage('<%=i%>', event)">
-                                        <label  for="image<%= i %>" class="btn btn-dark position-absolute bottom-0 end-0"><i class="fa-solid fa-plus"></i></label>
-
+                                        <button id="btn-trash<%= i %>" onclick="onRemoveImageProduct('<%=i%>', '<%=id%>','<%=images[i].id%>')" type="button" class="btn btn-danger position-absolute bottom-0 end-0"><i class="fa-solid fa-trash-can"></i></button>
+                                        <input type="file" class="form-control" id="image<%= i %>" hidden onchange="onAddImageProduct(event,  '<%=i%>', '<%=id%>')">
+                                        <label  hidden id="label<%= i %>"  for="image<%= i %>" class="btn btn-dark position-absolute bottom-0 end-0"><i class="fa-solid fa-plus"></i></label>
                                       </div>
                                       
                                     <% } else { %>
                                       <div class="col-12 col-md-4 position-relative border" style="height: 350px;">
-                                        <input name="images" type="file" class="form-control" id="image<%= i %>" hidden onchange="onChangeImage('<%=i%>', event)">
-                                        <img class="img-fluid" src="" alt="" id="image-prev<%= i %>"> 
-
-                                        <label  for="image<%= i %>" class="btn btn-dark position-absolute bottom-0 end-0"><i class="fa-solid fa-plus"></i></label>
+                                        <input type="file" class="form-control" id="image<%= i %>" hidden onchange="onAddImageProduct(event, '<%=i%>', '<%=id%>')">
+                                        <img class="img-fluid" src="/img/default.jpg" alt="" id="image-prev<%= i %>"> 
+                                        <button id="btn-trash<%= i %>" hidden type="button" class="btn btn-danger position-absolute bottom-0 end-0"><i class="fa-solid fa-trash-can"></i></button>
+                                        <label  for="image<%= i %>" id="label<%= i %>" class="btn btn-dark position-absolute bottom-0 end-0"><i class="fa-solid fa-plus"></i></label>
                                       </div>
                                       <% } %>
                                   <% } %>
