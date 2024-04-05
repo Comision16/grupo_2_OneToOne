@@ -19,6 +19,7 @@ const apisRouter = require('./routes/apis.routes')
 
 const checkLoginUserLocal = require('./middlewares/checkLoginUserLocal');
 const checkCookie = require('./middlewares/checkCookie');
+const cors= require('cors');
 
 
 const app = express();
@@ -44,7 +45,7 @@ app.use(methodOverride('_method'))
 /* recurso Estatico*/
 app.use(express.static(path.join(__dirname,'..', 'public')));
 
-
+app.use(cors())
 app.use(checkLoginUserLocal);
 
 
