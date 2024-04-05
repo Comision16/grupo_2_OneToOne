@@ -4,29 +4,27 @@ const db = require('../../database/models')
 
 module.exports = (req, res) => {
 
-
-
+    const errors = validationResult(req);
     const image = req.files.image;
     const images = req.files.images;
 
-
     const {
-
         name,
         description,
         category,
         sizes,
-        colors,
         price,
         descount,
+        colors,
         categoryId,
-        setionId,
+        setionId
     } = req.body;
 
     const { id } = req.params;
 
-    const errors = validationResult(req);
 
+    const sizesArray = typeof sizes == "string" ? [sizes] : sizes;
+    const colorsArray = typeof colors == "string" ? [colors] : colors;
 
     if (errors.isEmpty()) {
         db.products.findByPk(id, {
@@ -40,22 +38,63 @@ module.exports = (req, res) => {
                 name,
                 description,
                 category,
-                sizes,
-                colors,
                 price,
-                image: image ? image[0].filename : image,
                 descount,
+                image: image ? image[0].filename : image,
                 categoryId,
                 setionId,
-
             },
                 {
                     where: {
                         id,
                     },
                 })
-                .then(() => {
-                    if (images) {
+                .then( async () => {
+
+                    
+
+                    //crear un array acorde al modelo
+                    if(sizesArray){
+                    //eliminar las filas referidas al producto
+                    await db.products_sizes.destroy({
+                        where : {
+                            productsId : id
+                        }
+                    });
+                    const sizesDB = sizesArray.map(size => {
+                        return {
+                            sizesId : size,
+                            productsId : id
+                        }
+                    });
+
+                    //guadar todos los registros
+                    await db.products_sizes.bulkCreate(sizesDB, {
+                        validate : true
+                    });
+                    }
+
+                    if(colorsArray){
+                        await db.products_colors.destroy({
+                            where : {
+                                productsId : id
+                            }
+                        });
+    
+                        const colorsDB = colorsArray.map(color => {
+                            return {
+                                colorsId : color,
+                                productsId : id
+                            }
+                        });
+            
+                        await db.products_colors.bulkCreate(colorsDB, {
+                            validate : true
+                        });
+                    }
+    
+
+                 /*    if (images) {
                         products.images.forEach((image) => {
                             existsSync("public/img/" + image.file) &&
                                 unlinkSync("public/img/" + image.file);
@@ -69,7 +108,7 @@ module.exports = (req, res) => {
                             const imagesDB = images.map(images => {
                                 return {
                                     file: images.filename,
-                                    restaurantId: products.id
+                                    productsId: products.id
                                 }
                             })
 
@@ -80,7 +119,7 @@ module.exports = (req, res) => {
                                 return res.redirect("/admin");
                             })
                         })
-                    } 
+                    }  */
                 });
 
         })
@@ -88,6 +127,7 @@ module.exports = (req, res) => {
 
             .then(product => {
                 console.log(product);
+                /* 
                 this.images = images ? images.map(image => image.filename) : [];
 
                 if (images) {
@@ -107,15 +147,15 @@ module.exports = (req, res) => {
                     })
                 } else {
                     return res.redirect("/admin");
-                }
+                } */
 
-
+                return res.redirect("/admin");
             }).catch(error => console.log(error))
 
 
             
     } else {
-        image &&
+       /*  image &&
           existsSync("public/img/" + image.filename) &&
           unlinkSync("public/img/" + image.filename);
     
@@ -125,7 +165,7 @@ module.exports = (req, res) => {
               unlinkSync("public/img/" + image);
           });
         }
-      
+       */
     
         const products = db.products.findByPk(id, {
             include : ['category','image','colors','sizes']

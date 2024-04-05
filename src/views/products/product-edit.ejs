@@ -67,9 +67,9 @@
                           <div class="col-12 mb-3">
                             <label for="" class="form-label">Colores</label>
                             <div class="d-flex flex-column flex-md-row gap-3 flex-wrap">
-                              <% colors.forEach(color=> { %>
+                              <% colorsdb.forEach(color=> { %>
                                 <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" name="colors" value="<%= color.id %>" id="color<%= color.id %>">
+                                  <input class="form-check-input" <%= colors.map(color => color.id).includes(color.id) && 'checked' %> type="checkbox" name="colors" value="<%= color.id %>" id="color<%= color.id %>">
                                   <label class="form-check-label" for="color<%= color.id %>">
                                     <%= color.name %>
                                   </label>
@@ -84,9 +84,9 @@
                           <div class="col-12 mb-3">
                             <label for="" class="form-label">Talles</label>
                             <div class="d-flex flex-column flex-md-row gap-3 flex-wrap">
-                              <% sizes.forEach(size=> { %>
+                              <% sizesdb.forEach(size=> { %>
                                 <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" name="sizes" value="<%= size.id %>" id="size<%= size.id %>">
+                                  <input class="form-check-input"  <%= sizes.map(size => size.id).includes(size.id) && 'checked' %>  type="checkbox" name="sizes" value="<%= size.id %>" id="size<%= size.id %>">
                                   <label class="form-check-label" for="size<%= size.id %>">
                                     <%= size.name %>
                                   </label>
@@ -109,26 +109,42 @@
                           <div class="col-12 p-4">
                             <div class="row">
                               <div class="col-12 col-lg-3">
-                                <label for="image" class="form-label" style="cursor: pointer;">Imagen principal</label>
-                                <input name="image" type="file" class="form-control" id="image" hidden>
+                                <label class="form-label" >Imagen principal</label>
                                 <small class="text-danger ms-2">
                                   <%= (locals.errors && errors.image) && errors.image.msg %>
                                 </small>
             
-                                <div id="box-image" class=" border d-flex justify-content-center gap-2">
-                                    <img class="img-fluid" src="/img/<%= image %>" alt="">
+                                <div id="box-image" class=" border d-flex justify-content-center gap-2 position-relative">
+                                    <img id="image-prev" class="img-fluid" src="/img/<%= image %>" alt="">
+                                    <input name="image" onchange="onUpdateImageMainProduct(event,'<%=id%>' )" type="file" class="form-control" id="image" hidden>
+                                    <label for="image" class="btn btn-dark position-absolute bottom-0 end-0" style="cursor: pointer;"><i class="fa-solid fa-arrows-rotate"></i></label>
                                 </div>
                               </div>
                               
                               <div class="col-12 col-lg-9">
-                                <label for="images" class="form-label" style="cursor: pointer;">Imágenes</label>
-                                <input name="images" type="file" class="form-control" id="images" hidden multiple>
+                                <label for="images" class="form-label">Imágenes</label>
         
-                                <div id="box-images" class="w-100 border d-flex flex-column flex-lg-row justify-content-center align-items-center gap-2" >
-                                    <% images.forEach(image => { %>
-                                      <img class="img-fluid" src="/img/<%= image %>" alt="">
-
-                                    <% }) %>
+                                <div id="box-images" class="row border gap-3 gap-md-0">
+                                  
+                                  <% for( let i = 0; i < 3; i++ ) { %>
+                                    <% if (images[i]) { %>
+                                      <div class="col-12 col-md-4 position-relative" style="height: 350px;">
+                                        <img class="img-fluid" src="/img/<%= images[i].file %>" alt="image" id="image-prev<%= i %>"> 
+                                        <button id="btn-trash<%= i %>" onclick="onRemoveImageProduct('<%=i%>', '<%=id%>','<%=images[i].id%>')" type="button" class="btn btn-danger position-absolute bottom-0 end-0"><i class="fa-solid fa-trash-can"></i></button>
+                                        <input type="file" class="form-control" id="image<%= i %>" hidden onchange="onAddImageProduct(event,  '<%=i%>', '<%=id%>')">
+                                        <label  hidden id="label<%= i %>"  for="image<%= i %>" class="btn btn-dark position-absolute bottom-0 end-0"><i class="fa-solid fa-plus"></i></label>
+                                      </div>
+                                      
+                                    <% } else { %>
+                                      <div class="col-12 col-md-4 position-relative border" style="height: 350px;">
+                                        <input type="file" class="form-control" id="image<%= i %>" hidden onchange="onAddImageProduct(event, '<%=i%>', '<%=id%>')">
+                                        <img class="img-fluid" src="/img/default.jpg" alt="" id="image-prev<%= i %>"> 
+                                        <button id="btn-trash<%= i %>" hidden type="button" class="btn btn-danger position-absolute bottom-0 end-0"><i class="fa-solid fa-trash-can"></i></button>
+                                        <label  for="image<%= i %>" id="label<%= i %>" class="btn btn-dark position-absolute bottom-0 end-0"><i class="fa-solid fa-plus"></i></label>
+                                      </div>
+                                      <% } %>
+                                  <% } %>
+                               
                                 </div>
                               </div>
                             </div>
@@ -154,5 +170,6 @@
 
 
   <%- include('../partials/scripts') %>
+  <script src="/javascripts/product-edit.js"></script>
 </body>
 </html>
