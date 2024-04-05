@@ -42,13 +42,13 @@ module.exports ={
 
         const {keyword} = req.query
 
-        db.Restaurant.findAll({
+        db.products.findAll({
             where : {
                 name : {
                     [Op.substring] : keyword
                 }
             },
-            include : ['address','category']
+            include : ['category']
         })
             .then(result => {
                 return res.render('dashboard', {
