@@ -120,6 +120,7 @@ cursor: pointer;
   left: 0;
   width: 100%;
   height: 100%;
+  font-weight: bold;
   background-color: rgba(0, 0, 0, 0.7); 
   z-index: 9999; 
   overflow: auto; 
@@ -145,12 +146,30 @@ cursor: pointer;
   display: block; 
 }
 .cart-item-buttons2 .buy-btn2 {
-  background-color: #4caf50;
-  color: white;
+  background-color: #00ff08;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
   margin-left: 50px;
   height: 30px;
   width: 90px;
  margin-bottom: 30px;
 }
 
+@media (min-width: 760px) {
+  .cart-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
+  .cart-item {
+    width: calc(48% - 10px); /* Calcular el ancho para que haya espacio entre las columnas */
+  }
+  .cart-item-buttons2 .buy-btn2 {
+ 
+margin-left: -400px;
+
+ 
+}
+}
