@@ -1,750 +1,175 @@
-
-/* -------inicio / carrito-------------------*/
-.menu-inicio .inicio_carrito-ul {
-list-style: none;
-padding: 0;
-margin: 10px;
-display: flex;
-align-items: center; 
-margin-left: 5%;
+/* General styles */
+.cart-container {
+  padding: 20px;
+  justify-content: center;
 }
-.menu-inicio .inicio_li,
-.menu-inicio .carrito-li {
-margin-right: 10px; 
-}
-.menu-inicio .carrito-li {
- margin-right: 0; 
-}
-.menu-inicio .barra {
-  margin-right: 5px; 
-}
-.menu-inicio .inicio_a,
-.menu-inicio .carrito_a {
- color: black;
-text-decoration: none;
-}
-/*-------mi carrito el titulo--------------*/
-.titulo{ 
-text-align: center;
-font-family:'Roboto', sans-serif ;
-font-weight: 400;
-}
-  /* ----------producto--------------------------*/
-.producto2{
-display: flex;
-justify-content: center;
-}
-
-.producto-imagen-precio_cantidad_comprar_costo{
-color:white ;
-display: flex;
-border: 2px ;
-width: 150%;    /* Ancho del 50% del contenedor padre */
-height: 200px;
-background-color: #000000;
-border-radius: 10px 10px 10px 10px;
-margin: 5%;
-}
-.precio_cantidad_comprar_costo {
-margin-top: 20%;
-height: 50px;
-}
-.precio_cantidad_comprar_costo{
-position: relative;
-top: -100px; 
-}
-/*--------imagen-dEL PANTALON------------------------*/
-.imagen1  .imagen2   {
-margin-right:5px ;
-position: relative;
-}
-.imagen1{
-position: relative;
-top: 25px;
-left:10%; 
-}
-.imagen2{
-width: 100px;
-position: relative;
-top: 45px;
-left: 10%; 
-}
-
-  /*----pantalon-------------*/
-.nombre-ropa2 {
-position: relative;
-color: rgb(255, 28, 193);
-font-size: 20px;
-left:15px;
-top:-10%;
-letter-spacing: 1px;
- /* o display: inline; */
-margin-right: 12px;
-margin-top: 50px;
-font-family:'insolata' ;
-display: inline-block;
-}
- /*---------precios y el descuento-----------------*/
-.precio1.descuento2  .descuento1 .precio2     {
-font-family:'inconsolata';
-color: white; 
-}
-.contenedores_precio_circulos_comprar{
-margin-top: -16px;  
-}
-
-.contenedores_precio_circulos_comprar1{
-margin-top: -35px; 
-}
-/*----contenedor 1--------*/
-.precio-original1{
-margin-top: -6%;
-}
-.descuento1 {
-position: relative;
-font-size: 24px; 
-left: 45%;
-top: -9%;
-}
-.precio1 {
-font-size: 15px; 
-text-decoration: line-through;
-position: absolute;
-left: 73%;
-}
-/*-----contenedor 2------*/
-.precio {
- font-size: 24px; 
-position: relative;
- top: 15%; 
-left: 45%;
-}
-.descuento{
- font-size: 15px; 
- text-decoration: line-through;
-position: relative;
- top: -15px;
- left: 45%;
-}
-
-/*-------circulos----------------*/
-.cantidad2{
-width: 30px; 
-height: 30px;
-border-radius: 50%;
-background-color: white;
-color: #000000;
-font-size: 20PX; ;
-display: inline;
-margin-bottom: 10px;
-margin-top:2PX ;
-}
-.cantidad2{
-position: relative;
-left: 35%;
- top: 5px
-}
-/*-------contenedor de circulos 2------------------------*/
-.cantenedor_mas1{
-width: 30px; 
-height: 30px;
-border-radius: 50%;
-background-color: white;
-color: #000000;
-font-size: 20PX; ;
- display: inline;
-margin-bottom: 10px;
-margin-top:2PX ;
-}
-.contenedor_menos1{
-width: 30px; 
-height: 30px;
-border-radius: 50%;
-background-color: white;
-color: #000000;
-font-size: 20PX; ;
-display: inline;
-margin-bottom: 10px;
-margin-top:2PX ;
-font-family:'Inconsolata' ;
-}
-.contenedor_circulos{
- position: relative;
-left: 38%;
-top: 25%;
-}
- /*------el numero del medio de los circulos---------------*/ 
-.numero2 .numero{
-font-family: sans-serif ;
-color:white;
-font-size: 25px;
-margin-bottom: 20px; 
-
- }    
-.numero2{
-margin-left: 15px; 
-position: relative;
-left: 31%;
-top: -13%;
-}
-
-.numero{
-margin-left: 15px; 
-position: relative;
-left:-3%;
-top: 13%;
+.container-title {
+  color: black;
+margin-top: 0px;
+margin-bottom: 15px;
+font-weight:bolder;
 
 }
-  /*---1er contenedor ----botones comprar eliminar----------------*/
-.eliminar1, .comprar1{
-border-radius:15px 15px 15px 15px;
-margin-right: 15px; 
-width: 90px;   
-margin-top:2PX ;
-font-size: 13px; 
-border: 2px solid black;
-display: inline-block;
-}
-.eliminar1, .comprar1{
-position: relative;
-left: 35px;
-top: -25%;
-}
-.eliminar1{
-color:white ;
-background-color: rgb(60, 59, 59); 
-border-radius: 10px;
-border-radius:15px 15px 15px 15px;
-}
-.comprar1{
-background-color: rgb(255, 28, 193);
-color: #000000;
-}
-/*--------2contenedor de comprar-eliminar ---------------------*/
-.eliminar, .comprar{
-border-radius:15px 15px 15px 15px;
-margin-right: 15px; 
-width: 90px;   
-margin-top:2PX ;
-font-size: 13px; 
-border: 2px solid black;
-display: inline-block;
-}
-.eliminar, .comprar{
-position: relative;
-top: -25%;
-left: 26px;
-}
-.eliminar {
- background-color: rgb(60, 59, 59); 
-color: white;
-}
-.comprar {
-background-color: rgb(255, 28, 193);
-color: #000000;
-}
-.comprar-eliminar{
-position: relative;
-left: 5px;
-top: 65%;
-}
-/*----------costo de envio-costo gratis-------*/
-.costo {
-align-items:center;
-color:white;
-margin-top: 10px;
-font-size: 14px; 
-position: relative;   
-top: 360%;
-left: 8%;
-} 
- /*----------costo de envio-costo gratis-------*/
-.costo1{
-align-items:center;
-color:white;
-margin-top: 20px;
-font-size: 14px; 
-position: relative;   
-left: 15%; 
-}
-/*-------------zomm---------------------*/
-.imagen1-zoom {
-  overflow: hidden;
-  transition: transform 0.3s; /* Agregamos una transición suave */
-}
-.imagen1:hover{
-  transform: scale(1.2); /*  zoom */
+.titulo{
+  font-size: 20px;
+  color: white;
 }
 
-.imagen2-zoom {
-  overflow: hidden;
-  transition: transform 0.3s; /* Agregamos una transición suave */
-}
-.imagen2:hover {
-  transform: scale(1.2); /*  zoom */
-}
-.descuento:hover { color: red; }
-
-.precio1:hover { color: red; }
-/*----------PROBANOO FUEGOOO JAA  --------*/
-
-.costo {
-  position: relative;
-  animation: desplazarDesdeLaDerecha 1.5s ease-out;
-}
-
-@keyframes desplazarDesdeLaDerecha {
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.costo1 {
-  position: relative;
-  animation: desplazarDesdeLaDerecha 1.5s ease-out;
-}
-
-@keyframes desplazarDesdeLaDerecha {
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.nombre-ropa2  {
-  position: relative;
-  animation: desplazarDesdeLaIzquierda 1.5s ease-out;
-}
-
-@keyframes desplazarDesdeLaIzquierda {
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.nav_carrito {
-  cursor: pointer; /* Cambia el cursor a una mano cuando el mouse está sobre el contenedor del carrito */
-}
-/* ---------------------------*/
-.descuento1 {
-  display: inline-block;
-  transition: transform 0.3s ease; /* Agregamos una transición suave */
-}
-
-.descuento1:hover {
-  transform: scale(1.2); /* Ajusta el valor según el nivel de zoom que desees */
-}
-
-.precio {
-  display: inline-block;
-  transition: transform 0.3s ease; 
-}
-
-.precio:hover {
-  transform: scale(1.2);
-}
-/*----------------------*/
-.comprar-eliminar {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-.comprar-eliminar:hover {
-  transform: scale(1.2); 
-}
-.comprar-eliminar1 {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.comprar-eliminar1:hover{
-  transform: scale(1.2); 
-}
-
-
-/*---------💪🏽----💪🏽---------------*/
-
-
-
-
-
-@media (min-width:1024px ){
-.producto-imagen-precio_cantidad_comprar_costo{
-overflow: hidden;
- width: 1010px; /* Puedes ajustar el ancho según tus necesidades */
-height: 135px; 
-margin-top: -1%;
-
-}
-.precio_cantidad_comprar_costo{
-position: relative;
-top: 45px;
-}
-
-
-.titulo{ 
-display:none;
-}
-.producto_carrito2{
-display:none;
-}
-.nombre-ropa2 {
- position: relative;
-color: rgb(255, 28, 193);
-font-size: 20px;
-top:-79%;
-letter-spacing: 1px;
-margin-left: 25px; ;
-}
-.costo { 
-text-align:center;
-color:white;
-margin-top:4px;
-margin-left: 8%;
-zoom: 0.8;
-}
-.imagen1 {
-margin-top: 10%;
-margin-left: 8%;
-zoom: 0.6;
-}
-/*--------------elementos eliminar comporar-----*/
-.eliminar1{
-display: block; 
-position: relative;
-top: -92px;
-left:330%;
-color: white;
-}
-.comprar1{
-position: absolute;
-top: -145px;
-left: 330% ;
-}
-.eliminar1, .comprar1{
-border-radius:10px 10px 10px 10px;
-margin-right: 15px; 
-width: 140px;   
-margin-top:-3px;
-font-size: 12px; 
-border: 2px solid black;
-display: inline-block;
-}
-.cantidad_circulos{
-display: block;
-display: flex;
-margin-left: 65%;
-margin-top: -17%;
-}
-.precio-original1{
-margin-top:-29px;
-margin-left:-65px; ;
-}
-.imagen1-zoom {
-  overflow: hidden;
-  transition: transform 0.3s; 
-}
-.imagen1:hover{
-  transform: scale(1.2); /*  zoom */
-}
-
-.imagen-zoom {
-  overflow: hidden;
-  transition: transform 0.3s; 
-}
-.imagen:hover {
-  transform: scale(1.2); /*  zoom */
-}
-/*----------------------------*/
-
-}
-
-
-
-/*------🖥️-COMPU----------------*/
-
-
-
-
-
-
-          @media (min-width:1440px ) {
-
-          .producto-imagen-precio_cantidad_comprar_costo{
-           width: 1430px; /* Puedes ajustar el ancho según tus necesidades ponele jaa */
-           height: 145px; 
-           margin-top: 0%;
-           }
-          .precio_cantidad_comprar_costo{
-          position: absolute;
-          left:25%;
-          top: 15px;
-          }
-          .titulo{ 
-            display:none;
-          }
-          .producto_carrito2{
-          display:none;
-          }
-          .nombre-ropa2 {
-           position: relative;
-           color: rgb(255, 28, 193);
-           font-size: 20px;
-           top:-79%;
-           letter-spacing: 1px;
-           margin-left: 25px; ;
-           }
-          .costo {
-           text-align:center;
-           color:white;
-           margin-top:4px;
-           margin-left: 8%;
-          zoom: 0.8;
-           }
-          .imagen1 {
-          margin-top: 10%;
-          margin-left: 8%;
-          zoom: 0.6;
-          }
-          .imagen1-zoom {
-            overflow: hidden;
-            transition: transform 0.3s; /* Agregamos una transición suave */
-          }
-          .imagen1:hover {
-            transform: scale(1.2); /*  zoom */
-          }
-/*--------------elementos eliminar comporar-----*/ 
-         .eliminar1 {
-           display: block; 
-           position: relative;
-           top: -106px;
-           left:330%;
-           }
-          .comprar1{
-          position: absolute;
-          top: -145px;
-          left: 330% ;
-           }
-          .eliminar1, .comprar1{
-           margin-left: 250%;
+.cont-precio{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: auto;
+  margin-top: 50px;
   
-          }
-
-         .eliminar1, .comprar1{
-          border-radius:15px 15px 15px 15px;
-          margin-right: 15px; 
-          width: 140px;   
-          margin-top:-9px;
-          font-size: 20px; 
-          border: 2px solid black;
-          display: inline-block;
-
-          }
-         .cantidad_circulos{
-          display: block;
-          display: flex;
-          margin-left: 100%;
-          margin-top: -25%;
-
-          }
-          .cantidad_circulos{
-           zoom: 1.5
-           
-          }
-
-         .precio-original1{
-         position: absolute;
-         top: 65%;
-          left:175px; ;
-          }
-         .precio1{ 
-          margin-left: 85%;
-          position: absolute;
-          top: 66%;
-          }
-         .inicio_carrito-li {
-          position: relative;
-          left: 10%;
-          }
-        /*------averiguar como se puede areilar esto  para q se sale de cuadro---------------*/
-          .comprar-eliminar1{
-            display: inline-block;
-            transition: transform 0.3s ease; /* aca no quiero */
-          }
-      
-          /*noooo */
-          .comprar-eliminar1:hover {
-            transform: none;
-          }
-          }
-
-/*----------tablet---📱-------------*/
-@media (min-width:768px){ 
-.precio_cantidad_comprar_costo {
-margin-left: 45px;
-margin-top: 14%;   
-}
- /* Estilos para los elementos de la lista */
-
-.inicio_carrito-li {
-margin: 0 10px;
-list-style: none; 
-font-size: 30px ;
-}
- /* Estilos para los enlaces */
-.inicio_carrito-li .inicio_carrito-a {
-text-decoration: none; /* Quitar la línea de decoración por defecto */
-border-bottom: none; 
-}
-/*-----TITULO_MI CARRITO----*/
-.titulo{ 
-position: relative;
-left: 5%;
-text-align: center;
-margin-top: 20px;
-font-size: 200%;
-font-family: "roboto" ;
-}
-/* ----IMAGEN DE LA ROPA----*/  
-.imagen1{
-width: 120px;
-position: relative;
-top: 5%;
- left: 8%;
-}
-.imagen2{
-width: 150px;
-position: relative;
-top: 15%;
-left: 8%;
-}
-/*------nombre de roPA*/
-.nombre-ropa2 {
-font-family:'roboto' ;
-color:rgb(255, 28, 193);
-font-size: 26px;
-position: relative;
-left:-37px;
-letter-spacing: 2px;
-margin-top: 4%;
-}
-
-
- /*------titulo-2--envio y costo----------------*/  
-.costo{
-color:azure;
-position: absolute;
-top: 10px;
-left: 2px; ;
-text-align: right; ;
-white-space: nowrap;
-font-size: 25px;
-letter-spacing: 5px;
-}
-.costo1{
-color:azure;
-position: absolute;
-top: -5px;
-left: 2px; ;
-text-align: right; ;
-white-space: nowrap;
-font-size: 28px;
-letter-spacing: 5px;
-}
-/*--------precio y descuento-------------------*/
-.precio1{
-font-size: 18px;
-margin-top: 9%;
-position:absolute;
-left:62% ;
-}
-.descuento1{
-position: relative;
-top:45px;
-left: 40%; 
-font-size: 33px;
-}
-/*-----preciode contenedor 2------------------*/
-.precio{
-position: relative;
-top:35px;
-left: 62%; 
-font-size: 33px;
+ 
 }
 .descuento{
-position: relative;
-top:20px;
-left: 65%; 
-font-size: 18px; 
+  font-size: 10px;
+  font-weight: bold;
+  color: rgb(0, 255, 21);
 }
-/*---------------circulos--------------------*/
-/*numero del medio de los circulos*/
-.numero2{
+.dis{
+  display: flex;
+  
+}
+.price{
+font-size: 25px;
 color: white;
-font-family:sans-serif ;
-font-size: 25px;
-text-align: center;
-position: relative;
-left:26%;
+margin-bottom: 1px;
 }
-/*----numero de contenedor 2-----------*/
-.numero{
-font-family:sans-serif ;
-font-size: 25px;
-text-align: center;
-position: relative;
-left:-8%;
-top:27%; 
+.container-img{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
-/*--------eliminar-👻-comprar------*/
-.comprar-eliminar1{
-position: absolute;
-left: 90px; 
-top: 320%;
-font-size: 25px;
+.imagen{
+  height: 150px;
+  width: 150px;
 }
- /*-------contenedor 2 de eliminar comprar ----*/
-.comprar-eliminar{
-/*padding-left: 26%;
- margin-top: 20px;*/
-position: absolute;
-left: 75px; 
-top: 340%;
-font-size: 25px;
-display: flex;
-text-align: center;
+.cart-item {
+
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: rgb(0, 0, 0);
 }
-/*----------las bolitassss--1------------------*/
-.cantidad_circulos{
- font-size: 28px;
-position: absolute;
-left:29%; 
-top: 249%;
+
+/* Styles for product image */
+.cart-item img {
+  max-width: 100%;
+  height: auto;
+ 
 }
-/* --------boliyas dos-------*/
-.contenedor_circulos    {
-font-size: 25px;
-position: absolute;
-display: flex; /* Utilizar flexbox para alinear los contenedores */ 
-position: absolute;
-left: 62%;
-top: 260%;
+
+/* Styles for product details */
+.cart-item-details {
+  margin-top: 10px;
 }
-  /*--------😱--------*/ 
+
+.cart-item-details h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.cart-item-details p {
+  margin-bottom: 5px;
+}
+
+/* Styles for buttons */
+.cart-item-buttons {
+  margin-top: 10px;
+}
+
+.cart-item-buttons button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.cart-item-buttons .delete-btn {
+  background-color: rgb(255, 28, 193);
+  color: white;
+}
+
+.cart-item-buttons .buy-btn {
+  background-color: #4caf50;
+  color: white;
+}
+.counter-box{
+  
+  height: 25px;
+  margin-left: -20px;
+  margin-right: 30px;
+}
+
+
+.guia__pago {
+  display: flex;
+  flex-direction: row;
+left: 25%;
+  text-decoration: underline;
+  position: relative; 
+cursor: pointer;
+}
+.img_pago {
+  display: none; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.7); 
+  z-index: 9999; 
+  overflow: auto; 
+  text-align: center; 
+}
+
+.img_pago img {
+  max-width: 80%; 
+  max-height: 80%; 
+  margin-top: 5%; 
+}
+
+.img_pago .close-btn {
+  position: absolute; 
+  top: 10px;
+  right: 10px;
+  color: white;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.img_pago:target {
+  display: block; 
+}
+.cart-item-buttons2 .buy-btn2 {
+  background-color: #00ff08;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
+  margin-left: 50px;
+  height: 30px;
+  width: 90px;
+ margin-bottom: 30px;
+}
+
+@media (min-width: 760px) {
+  .cart-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .cart-item {
+    width: calc(48% - 10px); /* Calcular el ancho para que haya espacio entre las columnas */
+  }
+  .cart-item-buttons2 .buy-btn2 {
+ 
+margin-left: -400px;
+
+ 
+}
 }
