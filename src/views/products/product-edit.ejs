@@ -117,7 +117,7 @@
                                 <div id="box-image" class=" border d-flex justify-content-center gap-2 position-relative">
                                     <img id="image-prev" class="img-fluid" src="/img/<%= image %>" alt="">
                                     <input name="image" type="file" class="form-control" id="image" hidden>
-                                    <label for="image" class="btn btn-dark position-absolute top-100 end-0" style="cursor: pointer;"><i class="fa-solid fa-arrows-rotate"></i></label>
+                                    <label for="image" class="btn btn-dark position-absolute bottom-0 end-0" style="cursor: pointer;"><i class="fa-solid fa-arrows-rotate"></i></label>
                                 </div>
                               </div>
                               
@@ -128,16 +128,19 @@
                                   
                                   <% for( let i = 0; i < 3; i++ ) { %>
                                     <% if (images[i]) { %>
-                                      <div class="col-12 col-md-4 position-relative">
+                                      <div class="col-12 col-md-4 position-relative" style="height: 350px;">
                                         <img class="img-fluid" src="/img/<%= images[i].file %>" alt="image" id="image-prev<%= i %>"> 
                                         <input name="images" type="file" class="form-control" id="image<%= i %>" hidden onchange="onChangeImage('<%=i%>', event)">
-                                        <label for="image<%= i %>" class="btn btn-dark position-absolute top-0 end-0" style="cursor: pointer;"><i class="fa-solid fa-arrows-rotate"></i></label>
+                                        <label  for="image<%= i %>" class="btn btn-dark position-absolute bottom-0 end-0"><i class="fa-solid fa-plus"></i></label>
 
                                       </div>
                                       
                                     <% } else { %>
-                                      <div class="col-12 col-md-4 d-flex justify-content-center align-items-center border" style="height: 100%;">
-                                        <button class="btn btn-outline-dark"><i class="fa-solid fa-plus"></i></button>
+                                      <div class="col-12 col-md-4 position-relative border" style="height: 350px;">
+                                        <input name="images" type="file" class="form-control" id="image<%= i %>" hidden onchange="onChangeImage('<%=i%>', event)">
+                                        <img class="img-fluid" src="" alt="" id="image-prev<%= i %>"> 
+
+                                        <label  for="image<%= i %>" class="btn btn-dark position-absolute bottom-0 end-0"><i class="fa-solid fa-plus"></i></label>
                                       </div>
                                       <% } %>
                                   <% } %>

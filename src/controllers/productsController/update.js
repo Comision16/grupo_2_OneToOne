@@ -3,6 +3,7 @@ const { existsSync, unlinkSync } = require("fs");
 const db = require('../../database/models')
 
 module.exports = (req, res) => {
+
     const errors = validationResult(req);
     const image = req.files.image;
     const images = req.files.images;
@@ -50,14 +51,16 @@ module.exports = (req, res) => {
                 })
                 .then( async () => {
 
+                    
+
+                    //crear un array acorde al modelo
+                    if(sizesArray){
                     //eliminar las filas referidas al producto
                     await db.products_sizes.destroy({
                         where : {
                             productsId : id
                         }
                     });
-
-                    //crear un array acorde al modelo
                     const sizesDB = sizesArray.map(size => {
                         return {
                             sizesId : size,
@@ -69,23 +72,29 @@ module.exports = (req, res) => {
                     await db.products_sizes.bulkCreate(sizesDB, {
                         validate : true
                     });
+                    }
 
-                    await db.products_colors.destroy({
-                        where : {
-                            productsId : id
-                        }
-                    });
+                    if(colorsArray){
+                        await db.products_colors.destroy({
+                            where : {
+                                productsId : id
+                            }
+                        });
+    
+                        const colorsDB = colorsArray.map(color => {
+                            return {
+                                colorsId : color,
+                                productsId : id
+                            }
+                        });
+            
+                        await db.products_colors.bulkCreate(colorsDB, {
+                            validate : true
+                        });
+                    }
+                  
 
-                    const colorsDB = colorsArray.map(color => {
-                        return {
-                            colorsId : color,
-                            productsId : id
-                        }
-                    });
-        
-                    await db.products_colors.bulkCreate(colorsDB, {
-                        validate : true
-                    });
+                  
 
 
                     if (images) {
@@ -102,7 +111,7 @@ module.exports = (req, res) => {
                             const imagesDB = images.map(images => {
                                 return {
                                     file: images.filename,
-                                    restaurantId: products.id
+                                    productsId: products.id
                                 }
                             })
 
