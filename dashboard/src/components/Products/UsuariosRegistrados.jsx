@@ -28,11 +28,15 @@ const UsuariosRegistrados = () => {
             <div className="text-xs font-weight-bold text-warning text-uppercase mb-1">Usuarios registrados</div>
             <div className="h5 mb-0 font-weight-bold text-gray-800">{totalUsuariosRegistrados}</div>
           </div>
+         
           <div className="col-auto">
             <i className="fas fa-user fa-2x text-gray-300"></i>
           </div>
+        
         </div>
+        
       </div>
+      <a className="btn btn-darck" target="_blank" rel="nofollow" href='http://localhost:3000/apis/users'> Ver </a>
     </div>
   );
 }

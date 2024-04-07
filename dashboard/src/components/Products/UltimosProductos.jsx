@@ -32,7 +32,9 @@ const UltimosProductos = () => {
             <i className="fas fa-award fa-2x text-gray-300"></i>
           </div>
         </div>
+        
       </div>
+      <a className="btn btn-darck" target="_blank" rel="nofollow" href='http://localhost:3000/apis/products'> Ver </a>
     </div>
   );
 }

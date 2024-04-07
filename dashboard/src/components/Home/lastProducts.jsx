@@ -26,6 +26,8 @@ const LastProducts = () => {
         <div className="card shadow mb-4">
           <div className="card-header py-3">
             <h5 className="m-0 font-weight-bold text-gray-800">Último Producto Agregado</h5>
+            <hr />
+            <p>Fecha de agregado:</p>
           </div>
           <div className="card-body">
             <div className="text-center">
@@ -35,7 +37,7 @@ const LastProducts = () => {
             <h4>Categoría: {lastProduct.category.name}</h4>
             <h4>Precio: {lastProduct.price}</h4>
             <p>Descripción: {lastProduct.description}</p>
-            <p>Fecha de agregado:</p>
+           
             <a className="btn btn-danger" target="_blank" rel="nofollow" href={lastProduct.detail}>Ver detalle del producto</a>
           </div>
         </div>
