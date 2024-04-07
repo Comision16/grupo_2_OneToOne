@@ -3,23 +3,44 @@ import PropTypes from 'prop-types';
 import { useState } from "react";
 import Modal2 from "./Modal2";
 import { getProducts } from "../../../services";
+import ModalForm from "./ModalForm";
 
 const TableR = ({ products }) => {
-  const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
-  const [selectedProduct, setSelectedProduct] = useState(null); // Estado para almacenar el producto seleccionado
+  const [show, setShow] = useState(false); 
+  const [productDetail, setProductDetail] = useState({}); 
 
-  const handleClose = () => {
-    setShowModal(false); // Ocultar el modal
-    setSelectedProduct(null); // Restablecer el producto seleccionado
-  }
 
+  const [showForm, setShowForm] = useState(false); 
+  const [formValues, setFormValues] = useState({});
+
+  const handleClose = () => setShow(false);
+  
   const handleShow = async (id) => {
-    const productDetail = await getProducts(id);
-    setSelectedProduct(productDetail); // Establecer el producto seleccionado
-    setShowModal(true); // Mostrar el modal
+   
+    const product = await getProducts(id);
+    console.log(product);
+    setProductDetail(product); 
+    setShow(true);
   }
+
+  const handleCloseForm = () => setShowForm(false);
+  const handleShowForm = async (id) => {
+if (id) {
+  const product = await getProducts(id);
+  setFormValues(product); 
+  
+}else{
+  setShowForm(true);
+}
+
+  }
+
+
+
+
 
   return (
+    <>
     <Table>
       <thead>
         <tr>
@@ -36,7 +57,7 @@ const TableR = ({ products }) => {
           const { id } = product;
           return (
             <tr key={id}>
-              <td>{id}</td>
+              <td>{product.id}</td>
               <td>{product.name}</td>
               <td>{product.category.name}</td>
               <td>{product.description}</td>
@@ -46,14 +67,26 @@ const TableR = ({ products }) => {
                   <Button variant="primary" className="btn-sm" onClick={() => handleShow(id)} >
                     <i className="fa-solid fa-eye"></i>
                   </Button>
+                  <Button variant="success" className="btn-sm" onClick={() => handleShowForm(id)} >
+                    <i className="fa-solid fa-pencil"></i>
+                  </Button>
                 </div>
               </td>
             </tr>
           );
         })}
       </tbody>
-      <Modal2 show={showModal} handleClose={handleClose} products={selectedProduct}/>
+      <Modal2 show={show} handleClose={handleClose}  productDetail={productDetail}/>
+
+      <ModalForm show={showForm} handleClose={handleCloseForm}  productDetail={formValues}/>
     </Table>
+
+   
+    
+
+
+
+</>
   );
 };
 
