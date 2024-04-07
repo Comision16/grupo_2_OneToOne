@@ -29,12 +29,13 @@ const LastProducts = () => {
           </div>
           <div className="card-body">
             <div className="text-center">
-              <img className="img-fluid "  src={`http://localhost:3000/${lastProduct.image}`} style={{ width: "40rem" }}  alt={lastProduct.name} />
+              <img className="img-fluid "  src={`http://localhost:3000/img/${lastProduct.image}`} style={{ width: "40rem" }}  alt={lastProduct.name} />
             </div>
             <h4>Nombre: {lastProduct.name}</h4>
             <h4>Categoría: {lastProduct.category.name}</h4>
             <h4>Precio: {lastProduct.price}</h4>
             <p>Descripción: {lastProduct.description}</p>
+            <p>Fecha de agregado:</p>
             <a className="btn btn-danger" target="_blank" rel="nofollow" href={lastProduct.detail}>Ver detalle del producto</a>
           </div>
         </div>
