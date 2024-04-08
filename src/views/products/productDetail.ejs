@@ -7,22 +7,27 @@
 
         <%- include('../partials/header',{ title:'detalle'}) %>
 
+
             <main class="main__detalles_del_producto">
 
-                <div class="container-title"> <b>Inicio </b>/ <%= product.category %> /  <b><%= product.name %></b></div>
+                <div class="container-title"> <b>Inicio </b>/ <%= product.category %> / <b>
+                            <%= product.name %>
+                        </b></div>
                 <br>
                 <div class="div_padre_detalle_product container-producto">
 
                     <div class="detalle">
-                       
+
                         <div class="container-img">
                             <div class="imagenes__productos">
-                                <% product.images.forEach((image, index) => { %>
-                                    <img class="imagen-secundaria" src="/img/<%= image.file %>" alt="" data-index="<%= index %>">
-                                <% }) %>
+                                <% product.images.forEach((image, index)=> { %>
+                                    <img class="imagen-secundaria" src="/img/<%= image.file %>" alt=""
+                                        data-index="<%= index %>">
+                                    <% }) %>
                             </div>
                             <div class="contenedor_detalles_carrusel" id="foto1">
-                                <img id="imagen-principal" src="/img/<%= product.image %>" style="object-fit: cover; width: 100%;" alt="imagen">
+                                <img id="imagen-principal" src="/img/<%= product.image %>"
+                                    style="object-fit: cover; width: 100%;" alt="imagen">
                             </div>
                         </div>
 
@@ -40,43 +45,94 @@
                                 </p>
                                 </p>
                                 <hr>
-                                <p><b>Precio : $ <%= product.price %></b></p>
 
-
-                                
-                                <div class="div_colores">
-                                    <b><p>Color:</p></b> 
-                                    <% if (product.colors) { %>
-                                        <%= product.colors.name %>
+                                <% if (product.descount> 0) { %>
+                                    <p><b>Precio : $<%= product.price - product.price * (product.descount / 100) %></b>
+                                    </p>
+                                    <p><b>Descuento : $<%= product.price * (product.descount / 100) %> (% <%=
+                                                    product.descount %>) </b></p>
                                     <% } else { %>
-                                        -
-                                    <% } %>
-                                </div>
-                                
-                                <div class="div_talle">
-                                    <b><p>Talle:</p></b>  
-                                    <% if (product.sizes) { %>
-                                        <%= product.sizes.name %>
-                                    <% } else { %>
-                                        -
-                                    <% } %>
-                                </div>
+                                        <p><b>Precio : $<%= product.price %></b></p>
+                                        <p><b>Descuento : -</b></p>
+                                        <% } %>
 
 
-                                <article class="articulo__disponible">
-                                    <div class="guia__talles">
-                                        <i class="fa-solid fa-ruler-horizontal"></i>
-                                        <p class="guia_talles_text"><a href="#img_talles">GUIA DE TALLES</a></p>
-                                    </div>
-                                </article>
-                                <div class="img_talles" id="img_talles">
-                                    <img src="/img/talles_720.png" alt="Guia de Talles">
-                                    <a href="#" class="close-btn">&times;</a>
-                                </div>              
+                                            <div class="div_colores">
+                                            
+
+                                                <div style="display: flex; flex-wrap: wrap;">
+                                                    <b>
+                                                        <p style="margin-right: 10px;">Color :</p>
+                                                    </b>
+                                                    <% if (product.colors && product.colors.length> 0) { %>
+                                                        <% let counter=0; %>
+                                                            <% product.colors.forEach(color=> { %>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="colors" value="<%= color.id %>"
+                                                                        id="color<%= color.id %>">
+                                                                    <label class="form-check-label"
+                                                                        for="color<%= color.id %>">
+                                                                        <%= color.name %>
+                                                                    </label>
+                                                                </div>
+                                                                <% counter++; %>
+                                                                    <% if (counter % 3===0) { %>
+                                                                        <br>
+                                                                        <!-- Agrega un salto de línea después de cada fila de tres colores -->
+                                                                        <% } %>
+                                                                            <% }) %>
+                                                                                <% } else { %>
+                                                                                    <p>-</p>
+                                                                                    <% } %>
+                                                </div>
+                                            </div>
 
 
 
-                                <hr>
+
+                                            <div class="div_talle">
+
+                                              
+                                                <div>
+                                                    <b>
+                                                        <p style="margin-right: 10px;"> Talle : </p>
+                                                    </b>
+                                                    <% if (product.sizes && product.sizes.length> 0) { %>
+                                                        <% product.sizes.forEach(sizes=> { %>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    name="sizes" value="<%= sizes.id %>"
+                                                                    id="color<%= sizes.id %>">
+                                                                <label class="form-check-label"
+                                                                    for="color<%= sizes.id %>">
+                                                                    <%= sizes.name %>
+                                                                </label>
+                                                            </div>
+                                                            <% }) %>
+                                                                <% } else { %>
+
+                                                                    <p> - </p>
+                                                                    <% } %>
+                                                </div>
+
+                                            </div>
+
+                                            <article class="articulo__disponible">
+                                                <div class="guia__talles">
+                                                    <i class="fa-solid fa-ruler-horizontal"></i>
+                                                    <p class="guia_talles_text"><a href="#img_talles">GUIA DE TALLES</a>
+                                                    </p>
+                                                </div>
+                                            </article>
+                                            <div class="img_talles" id="img_talles">
+                                                <img src="/img/talles_720.png" alt="Guia de Talles">
+                                                <a href="#" class="close-btn">&times;</a>
+                                            </div>
+
+
+
+                                            <hr>
 
 
                             </article>
@@ -92,13 +148,13 @@
                                         const counter = document.getElementById('item-counter');
                                         const btnPlus = document.querySelector('.btn-plus');
                                         const btnMinus = document.querySelector('.btn-minus');
-                                
+
                                         // Función para incrementar el contador
                                         btnPlus.addEventListener('click', function () {
                                             let currentValue = parseInt(counter.textContent);
                                             counter.textContent = currentValue + 1;
                                         });
-                                
+
                                         // Función para decrementar el contador
                                         btnMinus.addEventListener('click', function () {
                                             let currentValue = parseInt(counter.textContent);
@@ -108,13 +164,13 @@
                                         });
                                     });
                                 </script>
-    
+
                                 <button class="btn-add-to-cart">AGREGAR AL CARRITO</button>
                             </div>
 
 
 
-                            
+
                             <article class="articulo__disponible2">
                                 <div class="guia__pago">
                                     <p class="guia_pago_text"><a href="#img_pago">METODOS DE PAGO</a></p>
@@ -134,8 +190,10 @@
                 <div class="compartit_detalles_del_producto">
                     <h4 class="compartir"> COMPARTIR:</h4>
 
-                    <a href="https://www.facebook.com/Onetoone.consultingok"> <i class="fa-brands fa-square-facebook"></i></a>
-                    <a href="https://www.instagram.com/nahuelmendez17/"> <i class="fa-brands fa-square-instagram"></i></a>
+                    <a href="https://www.facebook.com/Onetoone.consultingok"> <i
+                            class="fa-brands fa-square-facebook"></i></a>
+                    <a href="https://www.instagram.com/nahuelmendez17/"> <i
+                            class="fa-brands fa-square-instagram"></i></a>
                     <a href="https://twitter.com/home"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="https://www.tiktok.com/"><i class="fa-brands fa-tiktok"></i></a>
 

@@ -121,6 +121,10 @@ span{
   background-clip: text ;
   -webkit-text-fill-color: transparent;
 }
+#enviarBtn{
+   color: white;
+   background-color: #bc1888;
+}
 
 @media (min-width:768px) {
    .footer_movil{

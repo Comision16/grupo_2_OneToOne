@@ -94,32 +94,7 @@ module.exports = (req, res) => {
                     }
     
 
-                 /*    if (images) {
-                        products.images.forEach((image) => {
-                            existsSync("public/img/" + image.file) &&
-                                unlinkSync("public/img/" + image.file);
-                        });
-
-                        db.images.destroy({
-                            where: {
-                                productsId: id
-                            }
-                        }).then(() => {
-                            const imagesDB = images.map(images => {
-                                return {
-                                    file: images.filename,
-                                    productsId: products.id
-                                }
-                            })
-
-                            db.images.bulkCreate(imagesDB, {
-                                validate: true
-                            }).then(result => {
-                                console.log(result);
-                                return res.redirect("/admin");
-                            })
-                        })
-                    }  */
+      
                 });
 
         })
@@ -127,27 +102,7 @@ module.exports = (req, res) => {
 
             .then(product => {
                 console.log(product);
-                /* 
-                this.images = images ? images.map(image => image.filename) : [];
-
-                if (images) {
-
-                    const imagesDB = images.map(image => {
-                        return {
-                            file: image.filename,
-                            productsId: product.id
-                        }
-                    })
-
-                    db.images.bulkCreate(imagesDB, {
-                        validate: true
-                    }).then(result => {
-                        console.log(result);
-                        return res.redirect("/admin");
-                    })
-                } else {
-                    return res.redirect("/admin");
-                } */
+   
 
                 return res.redirect("/admin");
             }).catch(error => console.log(error))
@@ -155,18 +110,7 @@ module.exports = (req, res) => {
 
             
     } else {
-       /*  image &&
-          existsSync("public/img/" + image.filename) &&
-          unlinkSync("public/img/" + image.filename);
-    
-        if (images) {
-          images.forEach((image) => {
-            existsSync("public/img/" + image) &&
-              unlinkSync("public/img/" + image);
-          });
-        }
-       */
-    
+   
         const products = db.products.findByPk(id, {
             include : ['category','image','colors','sizes']
         })

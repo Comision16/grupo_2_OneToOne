@@ -4,22 +4,32 @@ module.exports = async (req, res) => {
     try {
         const productId = req.params.id; 
 
-        const product = await db.products.findOne({
+        const productPromise = db.products.findOne({
             where: { id: productId },
             include: [
                 { model: db.images, as: 'images' },
-                { model: db.colors, as: 'colors' }, // Incluir el modelo 'colors'
-                { model: db.sizes, as: 'sizes' }    // Incluir el modelo 'sizes'
+                { model: db.colors, as: 'colors' }, 
+                { model: db.sizes, as: 'sizes' }    
             ] 
         });
 
-        if (!product) {
-            return res.status(404).send('Producto no encontrado');
-        }
+        const colorsPromise = db.colors.findAll({
+            order: [['name']]
+        });
 
-        return res.render('products/productDetail', { product });
+        const sizesPromise = db.sizes.findAll({
+            order: [['name']]
+        });
+
+        const [product, colorsdb, sizesdb] = await Promise.all([productPromise, colorsPromise, sizesPromise]);
+        
+        return res.render('products/productDetail', {
+            colorsdb,
+            sizesdb,
+            product
+        });
     } catch (error) {
-        console.error('Error al recuperar el producto:', error);
+        console.log(error);
         return res.status(500).send('Error interno del servidor');
     }
 };
