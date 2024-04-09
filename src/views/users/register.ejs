@@ -76,7 +76,10 @@
 
                           <div class="col-12 mb-3">
                             <label for="password2" class="form-label">Confirmar contraseña</label>
+                            <div class="input-group">
                             <input type="password2" name="password2" class="form-control <%= locals.errors && errors.password2 ? 'is-invalid' : null %>" id="password2">
+                            <span class="input-group-text"><i id="button-eye" class="fa-regular fa-eye"></i></span>
+                          </div>
                             <small id="error-password2" class="text-danger ms-2">
                               <%= locals.errors && errors.password2 ? errors.password2.msg : null %>
                             </small>
