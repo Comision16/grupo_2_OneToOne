@@ -49,7 +49,6 @@ margin-bottom: 1px;
 }
 .cart-item {
 
-  margin-bottom: 20px;
   border: 1px solid #ccc;
   margin-bottom: 20px;
   padding: 20px;
@@ -156,6 +155,10 @@ cursor: pointer;
  margin-bottom: 30px;
 }
 
+.buyHidden {
+  display: none;
+}
+
 @media (min-width: 760px) {
   .cart-items {
     display: flex;
@@ -163,9 +166,7 @@ cursor: pointer;
     justify-content: space-between;
   }
 
-  .cart-item {
-    width: calc(48% - 10px); /* Calcular el ancho para que haya espacio entre las columnas */
-  }
+
   .cart-item-buttons2 .buy-btn2 {
  
 margin-left: -400px;

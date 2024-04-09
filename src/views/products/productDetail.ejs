@@ -68,9 +68,9 @@
                                                         <% let counter=0; %>
                                                             <% product.colors.forEach(color=> { %>
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
+                                                                    <input class="form-check-input" type="radio"
                                                                         name="colors" value="<%= color.id %>"
-                                                                        id="color<%= color.id %>">
+                                                                        id="color<%= color.id %>"  onclick="colorChosen('<%= color.id %>','<%= color.name %>')">
                                                                     <label class="form-check-label"
                                                                         for="color<%= color.id %>">
                                                                         <%= color.name %>
@@ -101,9 +101,9 @@
                                                     <% if (product.sizes && product.sizes.length> 0) { %>
                                                         <% product.sizes.forEach(sizes=> { %>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                                <input class="form-check-input" type="radio"
                                                                     name="sizes" value="<%= sizes.id %>"
-                                                                    id="color<%= sizes.id %>">
+                                                                    id="color<%= sizes.id %>" onclick="sizeChosen('<%= sizes.id %>','<%= sizes.name %>')">
                                                                 <label class="form-check-label"
                                                                     for="color<%= sizes.id %>">
                                                                     <%= sizes.name %>
@@ -140,7 +140,7 @@
                             <div class="cart-container">
                                 <div class="counter-box">
                                     <button class="btn-minus">-</button>
-                                    <span id="item-counter">0</span>
+                                    <span id="item-counter" >1</span>
                                     <button class="btn-plus">+</button>
                                 </div>
                                 <script>
@@ -153,6 +153,8 @@
                                         btnPlus.addEventListener('click', function () {
                                             let currentValue = parseInt(counter.textContent);
                                             counter.textContent = currentValue + 1;
+
+                                            quantityChosen(currentValue + 1)
                                         });
 
                                         // Función para decrementar el contador
@@ -160,13 +162,13 @@
                                             let currentValue = parseInt(counter.textContent);
                                             if (currentValue > 0) {
                                                 counter.textContent = currentValue - 1;
+                                                quantityChosen(currentValue - 1)
                                             }
                                         });
                                     });
                                 </script>
 
-                                <button class="btn-add-to-cart">AGREGAR AL CARRITO</button>
-                            </div>
+                                <button class="btn-add-to-cart" onclick="addItemCart('<%=product.id%>', '<%=product.name%>', '<%= product.price - product.price * (product.descount / 100) %>', '<%=product.image%>')">AGREGAR AL CARRITO</button>                            </div>
 
 
 

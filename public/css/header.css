@@ -84,10 +84,11 @@ display: block;
     .element{
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      /* justify-content: space-between; */
       margin-top: 15px;
       position: relative;
-      left: 40px;
+      left: 36px;
+      /* width: 70px; */
     }
     
     .section-right-a {
@@ -97,7 +98,6 @@ display: block;
       color: aliceblue;
       margin: 0;
       height: 5px;
-     
     }
     
   
@@ -221,19 +221,15 @@ transition: color 0.3s;
 }
 
 .section-right {
-  
-  display: inline-block;
-
-  left: 30%;
-  top: -100px;
-  bottom: 200px;
- 
+  display: inline-block;
+  left: 23%;
+  top: -100px;
+  bottom: 200px;
 }
 
 .element{
-  display: inline-block;
-
-  left: 30%;
+  display: inline;
+  left: 24%;
   top: -100px;
   bottom: 200px;
 }
@@ -395,14 +391,14 @@ height: 100px; ;
   
 .element{
   position: relative;
-                  left:49%;
-                  top: -75px;
+  left: 41%;
+  top: -75px;
 }
   
   .section-right{
                 position: relative;
-                  left:39%;
-                  top: -75px;
+                left: 13%;
+                top: -75px;
   }
   #iconBuscar{
   
