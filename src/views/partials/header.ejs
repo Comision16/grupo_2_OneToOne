@@ -39,21 +39,25 @@
       </div>
     </div>
 
-    <div class="element">
+    <div class="element pe-sm-4 pe-md-0">
        
       <% if ( locals.userLogin ) { %>
        
 
         <a class="section-right-a" href="/usuarios/perfil"> <i class="fa-solid fa-circle-user header-icon"></i></a>
-        <a class="section-right-a" href="/carrito"> <i class="fa-solid fa-cart-shopping header-icon" ></i></a>
       
        
       
         <% }else{ %>
           <a class="section-right-a" href="/usuarios/ingreso"> <i class="fa-solid fa-circle-user header-icon"></i></a>
-          <a class="section-right-a" href="/carrito"> <i class="fa-solid fa-cart-shopping header-icon" ></i></a>
 
           <%}%>
+          <div class="position-relative" style="display: inline-block; width: 80px;">
+            <a class="section-right-a" href="/carrito"> <i class="fa-solid fa-cart-shopping header-icon"></i></a>
+            <span class="badge bg-warning position-absolute" style="top:-10px;right: -15px" id="showTotal"></span>
+          </div>
+          
+
 
 
     </div>
@@ -111,14 +115,9 @@
           <li  class="header-nav-ul-li"><a href="/productos/listar?categoria=4">ACCESORIOS</a></li>
         </ul>
         <% } %>
-
-
-
-      
     </nav>
-
-
   </header>
+  <script src="/javascripts/product-cart.js"></script>
 </body>
 
 </html>

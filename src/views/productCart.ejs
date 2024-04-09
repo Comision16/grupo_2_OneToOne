@@ -9,320 +9,40 @@
       <%- include('./partials/header') %>
 
 
-      <div class="container-title">Inicio / Carrito de compras </div>
-         <main class="cart-container">
-           
-            <section class="cart-items">
+         <div class="container-title">Inicio / Carrito de compras </div>
+         <main class="row p-4">
 
-              
-       <br>
-       <br>
-               <article class="cart-item">
-                  <h2 class="titulo">Pantalón Cargo de Estilo Urbano</h2>
+            <section class="col-12 col-md-7 col-lg-8 py-4 px-2">
+               <div class="row"  id="showCart">
 
-
-
-              
-
-                  
-            
-                  <div class="dis">
-                     <div class="container-img">
-                        <img class="imagen" src="/img/pantalon1-a.jpg" alt="Pantalón Cargo de Estilo Urbano">
-                     </div>
-   
-   
-   
-                     <div class="cont-precio">
-                        <p class="price">$8550 </p>
-                        <span class="descuento ">0% de descuento </span>
-                     </div>
-                  </div>
-                            
-
-
-
-
-
-                  <div class="cart-item-details">
-
-
-
-                     <div class="cart-container">
-                        <div class="counter-box">
-                           <button class="btn-minus">-</button>
-                           <span id="item-counter">0</span>
-                           <button class="btn-plus">+</button>
-                        </div>
-
-
-                        <div class="cart-item-buttons">
-                           <button class="delete-btn">Eliminar</button>
-                           <button class="buy-btn">Confirmar</button>
-                        </div>
-
-
-                     </div>
-                     <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                           const counter = document.getElementById('item-counter');
-                           const btnPlus = document.querySelector('.btn-plus');
-                           const btnMinus = document.querySelector('.btn-minus');
-
-                           // Función para incrementar el contador
-                           btnPlus.addEventListener('click', function () {
-                              let currentValue = parseInt(counter.textContent);
-                              counter.textContent = currentValue + 1;
-                           });
-
-                           // Función para decrementar el contador
-                           btnMinus.addEventListener('click', function () {
-                              let currentValue = parseInt(counter.textContent);
-                              if (currentValue > 0) {
-                                 counter.textContent = currentValue - 1;
-                              }
-                           });
-                        });
-                     </script>
-
-               </article>
-
-               <article class="cart-item">
-                  <h2 class="titulo">Pantalón Cargo de Estilo Urbano</h2>
-
-
-
-              
-
-                  
-            
-                  <div class="dis">
-                     <div class="container-img">
-                        <img class="imagen" src="/img/pantalon1-a.jpg" alt="Pantalón Cargo de Estilo Urbano">
-                     </div>
-   
-   
-   
-                     <div class="cont-precio">
-                        <p class="price">$8550 </p>
-                        <span class="descuento ">0% de descuento </span>
-                     </div>
-                  </div>
-                            
-
-
-
-
-
-                  <div class="cart-item-details">
-
-
-
-                     <div class="cart-container">
-                        <div class="counter-box">
-                           <button class="btn-minus">-</button>
-                           <span id="item-counter">0</span>
-                           <button class="btn-plus">+</button>
-                        </div>
-
-
-                        <div class="cart-item-buttons">
-                           <button class="delete-btn">Eliminar</button>
-                           <button class="buy-btn">Confirmar</button>
-                        </div>
-
-
-                     </div>
-                     <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                           const counter = document.getElementById('item-counter');
-                           const btnPlus = document.querySelector('.btn-plus');
-                           const btnMinus = document.querySelector('.btn-minus');
-
-                           // Función para incrementar el contador
-                           btnPlus.addEventListener('click', function () {
-                              let currentValue = parseInt(counter.textContent);
-                              counter.textContent = currentValue + 1;
-                           });
-
-                           // Función para decrementar el contador
-                           btnMinus.addEventListener('click', function () {
-                              let currentValue = parseInt(counter.textContent);
-                              if (currentValue > 0) {
-                                 counter.textContent = currentValue - 1;
-                              }
-                           });
-                        });
-                     </script>
-
-               </article>
-
-               <article class="cart-item">
-                  <h2 class="titulo">Pantalón Cargo de Estilo Urbano</h2>
-
-
-
-              
-
-                  
-            
-                  <div class="dis">
-                     <div class="container-img">
-                        <img class="imagen" src="/img/pantalon1-a.jpg" alt="Pantalón Cargo de Estilo Urbano">
-                     </div>
-   
-   
-   
-                     <div class="cont-precio">
-                        <p class="price">$8550 </p>
-                        <span class="descuento ">0% de descuento </span>
-                     </div>
-                  </div>
-                            
-
-
-
-
-
-                  <div class="cart-item-details">
-
-
-
-                     <div class="cart-container">
-                        <div class="counter-box">
-                           <button class="btn-minus">-</button>
-                           <span id="item-counter">0</span>
-                           <button class="btn-plus">+</button>
-                        </div>
-
-
-                        <div class="cart-item-buttons">
-                           <button class="delete-btn">Eliminar</button>
-                           <button class="buy-btn">Confirmar</button>
-                        </div>
-
-
-                     </div>
-                     <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                           const counter = document.getElementById('item-counter');
-                           const btnPlus = document.querySelector('.btn-plus');
-                           const btnMinus = document.querySelector('.btn-minus');
-
-                           // Función para incrementar el contador
-                           btnPlus.addEventListener('click', function () {
-                              let currentValue = parseInt(counter.textContent);
-                              counter.textContent = currentValue + 1;
-                           });
-
-                           // Función para decrementar el contador
-                           btnMinus.addEventListener('click', function () {
-                              let currentValue = parseInt(counter.textContent);
-                              if (currentValue > 0) {
-                                 counter.textContent = currentValue - 1;
-                              }
-                           });
-                        });
-                     </script>
-
-               </article>
-
-               <article class="cart-item">
-                  <h2 class="titulo">Pantalón Cargo de Estilo Urbano</h2>
-
-
-
-              
-
-                  
-            
-                  <div class="dis">
-                     <div class="container-img">
-                        <img class="imagen" src="/img/pantalon1-a.jpg" alt="Pantalón Cargo de Estilo Urbano">
-                     </div>
-   
-   
-   
-                     <div class="cont-precio">
-                        <p class="price">$8550 </p>
-                        <span class="descuento ">0% de descuento </span>
-                     </div>
-                  </div>
-                            
-
-
-
-
-
-                  <div class="cart-item-details">
-
-
-
-                     <div class="cart-container">
-                        <div class="counter-box">
-                           <button class="btn-minus">-</button>
-                           <span id="item-counter">0</span>
-                           <button class="btn-plus">+</button>
-                        </div>
-
-
-                        <div class="cart-item-buttons">
-                           <button class="delete-btn">Eliminar</button>
-                           <button class="buy-btn">Confirmar</button>
-                        </div>
-
-
-                     </div>
-                     <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                           const counter = document.getElementById('item-counter');
-                           const btnPlus = document.querySelector('.btn-plus');
-                           const btnMinus = document.querySelector('.btn-minus');
-
-                           // Función para incrementar el contador
-                           btnPlus.addEventListener('click', function () {
-                              let currentValue = parseInt(counter.textContent);
-                              counter.textContent = currentValue + 1;
-                           });
-
-                           // Función para decrementar el contador
-                           btnMinus.addEventListener('click', function () {
-                              let currentValue = parseInt(counter.textContent);
-                              if (currentValue > 0) {
-                                 counter.textContent = currentValue - 1;
-                              }
-                           });
-                        });
-                     </script>
-
-               </article>
-
-
-
-
-
-
-               <article class="articulo__disponible2">
-                  <div class="guia__pago">
-                     <p class="guia_pago_text"><a href="#img_pago">METODOS DE PAGO</a></p>
-                  </div>
-               </article>
-               <div class="img_pago" id="img_pago">
-                  <img src="/img/pago.jpg" alt="Guía de Métodos de Pago">
-                  <a href="#" class="close-btn">&times;</a>
                </div>
+             
+            </section>
+            <section class="col-12 col-md-5 col-lg-4 py-4 px-2" >
+               <div class=" d-flex flex-column  border mb-6 p-3">
+                  <article class="" style="width: 100%; height: 100%;">
+                     <div class="d-flex justify-content-between" >
+                        <a href="#img_pago">METODOS DE PAGO</a>
+                        <button class="btn btn-danger btn-sm buyHidden" onclick="emptyCart()">Vaciar carrito</button>
+                     </div>
+                     <hr>
+   
+                     <div class="img_pago" id="img_pago">
+                        <img src="/img/pago.jpg" alt="Guía de Métodos de Pago">
+                        <a href="#" class="close-btn">&times;</a>
+                     </div>
+   
+                  </article>
+                  <div class="buyHidden" >
+                     <h5>TOTAL A PAGAR: $<span id="total"></span></h5>
 
-               <div class="cart-item-buttons2">
+                  </div>
+                  <button class="btn btn-dark buyHidden">Ir a pagar</button>
 
-                  <button class="buy-btn2">Ir a pagar</button>
                </div>
-
-
-
-
+               
 
             </section>
-
 
 
 
