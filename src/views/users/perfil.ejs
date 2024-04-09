@@ -67,11 +67,13 @@
                                 <div class="col-6 mb-3">
                                     <button type="submit" class="btn btn-dark w-100">Actualizar datos</button>
                                 </div>
-                                <div class="col-6 mb-3">
-                                    <button class="btn btn-dark w-100">ELIMINAR CUENTA</button>
-                                </div>
+                            
                             </div>
                         </form>
+                        <form action="/usuarios/eliminar-cuenta" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');">
+                            <button type="submit" class="btn btn-danger w-100">ELIMINAR CUENTA</button>
+                        </form>
+                        
                     </div>
                 </div>
             </div>
@@ -81,3 +83,4 @@
     <%- include('../partials/footer.ejs') %>
 
 </body>
+</html>

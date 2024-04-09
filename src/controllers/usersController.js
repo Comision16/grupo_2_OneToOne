@@ -99,13 +99,11 @@ module.exports={
         const userId = req.session.userLogin.id;
         const { name, surname, email, password, confirmPassword } = req.body;
     
-        if (password !== confirmPassword) {
-            return res.status(400).send("Las contraseñas no coinciden");
-        }
+        // En este punto, no necesitas validar las contraseñas, ya que este controlador es para actualizar el perfil, no para eliminar la cuenta.
     
-        // Encripta la contraseña antes de guardarla
+        // Encripta la contraseña antes de guardarla (si se proporciona)
         let hashedPassword = null;
-        if (password.trim() !== '') {
+        if (password && password.trim() !== '') {
             hashedPassword = hashSync(password.trim(), 10);
         }
     
@@ -119,7 +117,7 @@ module.exports={
                 user.name = name;
                 user.surname = surname;
                 user.email = email;
-                
+    
                 // Actualiza la contraseña solo si se proporciona una nueva
                 if (hashedPassword) {
                     user.password = hashedPassword;
@@ -132,6 +130,28 @@ module.exports={
                 // Redirige o envía una respuesta de éxito con un mensaje
                 const changePasswordRequested = false; // Asegúrate de que changePasswordRequested sea false aquí
                 return res.render('users/perfil', { user: updatedUser, successMessage: "Datos guardados exitosamente", changePasswordRequested });
+            })
+            .catch(error => {
+                console.error(error);
+                return res.status(500).send("Error interno del servidor");
+            });
+    },
+    eliminarCuenta: (req, res) => {
+        const userId = req.session.userLogin.id;
+    
+        db.users.findByPk(userId)
+            .then(user => {
+                if (!user) {
+                    return res.status(404).send("Usuario no encontrado");
+                }
+    
+                // Elimina al usuario de la base de datos
+                return user.destroy();
+            })
+            .then(() => {
+                // Redirige a la página de inicio o muestra un mensaje de éxito
+                req.session.destroy(); // También puedes destruir la sesión del usuario
+                return res.redirect('/'); // Cambia esto a la URL a la que quieras redirigir
             })
             .catch(error => {
                 console.error(error);

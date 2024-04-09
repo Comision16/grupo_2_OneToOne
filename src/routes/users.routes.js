@@ -1,5 +1,5 @@
 const express = require('express');
-const { login, register, processLogin, processRegister, logout, perfil, actualizarPerfil } = require('../controllers/usersController');
+const { login, register, processLogin, processRegister, logout, perfil, actualizarPerfil, eliminarCuenta } = require('../controllers/usersController');
 const userRegisterValidator = require('../../validations/user-register-validator');
 const userLoginValidator = require('../../validations/user-login-validator');
 const router = express.Router();
@@ -14,6 +14,7 @@ router.get('/salir', logout);
 // Definición única para la ruta /perfil
 router.get('/perfil', perfil);
 router.post('/perfil', actualizarPerfil);
+router.post('/eliminar-cuenta', eliminarCuenta);
 
 module.exports = router;
 
