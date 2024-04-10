@@ -111,6 +111,11 @@ const quantityChosen = (count) => {
    quantity = count
 }
 const addItemCart = (id_product, name, price, image) => {
+   if (!size.id || !color.id) {
+      alert("Por favor, seleccione un color y un talle antes de agregar al carrito.");
+      return; 
+   }
+
    let cartUpdated;
    const itemCart = cart.find(item => item.id_product == id_product && item.size.id == size.id && item.color.id == color.id)
    if (itemCart) {
@@ -135,6 +140,7 @@ const addItemCart = (id_product, name, price, image) => {
    }
    sessionStorage.setItem('cart', JSON.stringify(cartUpdated))
    document.getElementById('showTotal').innerHTML = JSON.parse(sessionStorage.getItem('cart')).length
+   alert("¡Producto agregado al carrito correctamente!");
 }
 
 const removeItemCart = (id) => {
@@ -143,7 +149,10 @@ const removeItemCart = (id) => {
    sessionStorage.setItem('cart', JSON.stringify(cartUpdated))
    showProductsInCart(cartUpdated)
    document.getElementById('showTotal').innerHTML = JSON.parse(sessionStorage.getItem('cart')).length
-
+  const confirmDelete = confirm("¿Estás seguro de que quieres eliminar este producto del carrito?");
+   if (!confirmDelete) {
+      return; 
+   }
 }
 
 const modifyQuantity = (id, quantity) => {

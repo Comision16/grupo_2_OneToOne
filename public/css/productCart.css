@@ -159,6 +159,18 @@ cursor: pointer;
   display: none;
 }
 
+
+
+
+
+/* Estilo para cambiar el color del texto de las opciones no seleccionadas */
+input[type="radio"]:not(:checked)+label {
+  color: red;
+}
+
+
+
+
 @media (min-width: 760px) {
   .cart-items {
     display: flex;
