@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('./partials/head', { title: 'Dashboard' }) %>
+
+    <body style="background-image: url('/img/home/logoHome.png'); background-repeat: repeat;">
+        <%- include('./partials/header-admin') %>
+
+            <main class="container">
+                <div class="container">
+                    <h1 style="color: white;">Usuarios </h1>
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div style="color: black;" class="text-uppercase mb-1">Clientes registrados</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Total : <%= users.length %>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-user fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Email</th>
+                                        <th>Rol</th>
+
+                                        <th>Informacion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <% users.forEach(user=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= user.name %>
+                                            </td>
+                                            <td>
+                                                <%= user.surname %>
+                                            </td>
+                                            <td>
+                                                <%= user.email %>
+                                            </td>
+
+                                            <td>
+
+                                                <select onchange="confirmChangeRole(event, '<%=user.id %>')" class="form-select" name="role">
+                                                    <% roles.forEach(role => { %>
+                                                        <option value="<%= role.id %>" <%= user.roleId === role.id ? 'selected' : '' %>>
+                                                            <%= role.name %>
+                                                        </option>
+                                                    <% }) %>
+                                                </select>
+                                                
+                                                <script>
+                                                    function confirmChangeRole(event, userId) {
+                                                        if (confirm("¿Estás seguro de cambiar el rol?")) {
+                                                            onChangeRole(event, userId);
+                                                        } else {
+                                                           
+                                                        }
+                                                    }
+                                                </script>
+
+
+                                            </td>
+                                            <td>
+                                                <!-- Formulario para eliminar el usuario -->
+                                                <form     action="/admin/users/<%= user.id %>?_method=DELETE" method="POST">
+                                                    <!-- Agregar el campo oculto para method override -->
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Eliminar</button>
+                                                </form>
+                                            </td>
+                                     
+                                        </tr>
+                                        <% }); %>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <%- include('./partials/scripts') %>
+                <script>
+                    const onChangeRole = async (e, id) => {
+                        const roleId = e.target.value
+                        try {
+                            const response = await fetch(`http://localhost:3000/apis/users/${id}/role?role=${roleId}`, {
+                                method: 'PUT'
+                            })
+                            const result = await response.json()
+                            console.log(result);
+
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+                </script>
+           
+
+
+    </body>
+
+</html>

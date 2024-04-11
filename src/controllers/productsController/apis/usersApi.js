@@ -56,7 +56,7 @@ const getOneUsers= async (req,res) => {
         }
         return res.status(200).json({
             ok:true ,
-            products:usersCustom
+            users:usersCustom
         })
     } catch (error) {
         return res.status(error.status || 500).json({
@@ -66,7 +66,27 @@ const getOneUsers= async (req,res) => {
     }
 }
 
-
+const  changeRole = async (req,res)  => {
+try {
+    await db.users.update(
+        {
+        roleId:req.query.role
+    },
+    { 
+        where: {id:req.params.id}
+    }
+    )
+    return res.status(200).json({
+        ok:true ,
+        msg: 'Editado con exito'
+    })
+} catch (error) {
+    return res.status(error.status || 500).json({
+        ok: false,
+        msg: error.message || 'hubo un problemita, lo100to '
+    })
+}
+}
 
 
 
@@ -76,5 +96,6 @@ const getOneUsers= async (req,res) => {
 
 module.exports ={
     getAllUsers,
-    getOneUsers
+    getOneUsers,
+    changeRole
 }
