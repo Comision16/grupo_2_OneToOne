@@ -68,14 +68,15 @@ span{
 
 .redes_sociales_del_footer{
    margin-top: 40% ;
+   margin-left: 10px;
 }
 
 .listas_nuevas_del_footer{
    display:flex;
    flex-direction: column;
    list-style: none;
-   margin-top: 25%; 
-   margin-left: 15%;
+   margin-top: 45%; 
+   margin-left: -18%;
 }
 
 .listas_nuevas_del_footer a{
@@ -120,6 +121,11 @@ span{
   background-color: #fff;
   background-clip: text ;
   -webkit-text-fill-color: transparent;
+}
+.recomendacines{
+   display: flex;
+   justify-content: center; 
+   align-items: center;
 }
 #enviarBtn{
    color: white;
@@ -170,6 +176,10 @@ span{
        margin-top: 0;
        margin-right: 8%;
     }
+    .recomendacines{
+      display: flex;
+      margin-left: 15%;
+   }
 
     
    }
@@ -186,4 +196,10 @@ span{
     .contacto_ubicacion br{
        display: none;
     }
+    .redes_sociales_del_footer{
+      margin-left: -45%;
+   }
+    .recomendacines{
+      margin-left: -1%;
+   }
    }
