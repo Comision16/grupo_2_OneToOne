@@ -15,13 +15,22 @@ const showProductsInCart = (cart) => {
    
          <article class="cart-item">
             <h2 class="titulo">${item.name}</h2>
+       
             <div class="dis">
                <div class="container-img">
                   <img class="imagen" src="/img/${item.image}" alt="${item.name}">
                </div>
+              
                <div class="cont-precio">
+               <p class="price" style="font-size: 14px;"> ${item.color.name}</p> <!-- Nueva línea -->
+                  <p class="price" style="font-size: 14px;"> ${item.size.name}</p> <!-- Nueva línea -->
+           
                   <p class="price">$${item.price} </p>
+                  
                </div>
+              
+              
+              
             </div>
             <div class="cart-item-details">
    
@@ -113,7 +122,7 @@ const quantityChosen = (count) => {
 const addItemCart = (id_product, name, price, image) => {
    if (!size.id || !color.id) {
       alert("Por favor, seleccione un color y un talle antes de agregar al carrito.");
-      return; 
+      return;
    }
 
    let cartUpdated;
@@ -149,9 +158,9 @@ const removeItemCart = (id) => {
    sessionStorage.setItem('cart', JSON.stringify(cartUpdated))
    showProductsInCart(cartUpdated)
    document.getElementById('showTotal').innerHTML = JSON.parse(sessionStorage.getItem('cart')).length
-  const confirmDelete = confirm("¿Estás seguro de que quieres eliminar este producto del carrito?");
+   const confirmDelete = confirm("¿Estás seguro de que quieres eliminar este producto del carrito?");
    if (!confirmDelete) {
-      return; 
+      return;
    }
 }
 

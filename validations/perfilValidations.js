@@ -42,14 +42,8 @@ module.exports =[
          .isLength({
             min: 6
          }).withMessage('Minimo 6 y 10 caracteres'),
-         body("confirmPassword")
-         .notEmpty().withMessage("verifica la contraseña")
-         .custom((value, {req}) => {
-            if(value != req.body.password){
-                return false
-            }
-            return true
-         }).withMessage('Las contraseñas no coinciden'),
+         
+       
          //---------------------------------------------------------//
     
 ] 

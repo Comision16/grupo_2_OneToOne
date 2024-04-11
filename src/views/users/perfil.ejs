@@ -1,85 +1,225 @@
 <!DOCTYPE html>
 <html lang="ES">
 <%- include('../partials/head',{ title : 'Perfil' }) %>
-
-<body>
-    <%- include('../partials/header') %>
-
-    <main class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Perfil de usuario</h4>
-                    </div>
-                    <div class="card-body">
-                        <% if (errors && errors.length > 0) { %>
-                            <div class="alert alert-danger" role="alert">
-                                <% errors.forEach(error => { %>
-                                    <p><%= error.msg %></p>
-                                <% }); %>
-                            </div>
-                        <% } %>
-                        
-                        <% if (successMessage) { %>
-                            <div class="alert alert-success" role="alert">
-                                <%= successMessage %>
-                            </div>
-                        <% } %>
-
-                        <form id="form-perfil" action="/usuarios/perfil" method="POST">
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="name" class="form-label">Nombre</label>
-                                    <input type="text" name="name" class="form-control <%= locals.errors && errors.name ? 'is-invalid' : null %>"
-                                        id="name" value="<%= locals.old && old.name ? old.name : null %>" />
-                                    <small class="text-danger" id="error-name"></small>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="surname" class="form-label">Apellido</label>
-                                    <input type="text" name="surname" class="form-control <%= locals.errors && errors.surname ? 'is-invalid' : null %>"
-                                        id="surname"  value="<%= locals.old && old.name ? old.name : null %>" />
-                                    <small class="text-danger" id="error-surname"></small>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Correo electrónico</label>
-                                <input type="email" name="email" class="form-control <%= locals.errors && errors.email ? 'is-invalid' : null %>"
-                                    id="email" placeholder="name@example.com" value="<%= locals.old && old.email ? old.email : null %>" />
-                                <small class="text-danger" id="error-email"></small>
-                            </div>
-                         
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" name="password" class="form-control  <%= locals.errors && errors.password ? 'is-invalid' : null %>"
-                                    id="password" placeholder="Ingresa tu contraseña">
-                                <small class="text-danger" id="error-password"></small>
+    <body>
+        <%- include('../partials/header') %>
+            <main class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Perfil de usuario</h4>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
-                                <input type="password" name="confirmPassword" class="form-control <%= locals.errors && errors.confirmPassword ? 'is-invalid' : null %>"
-                                    id="confirmPassword" placeholder="Confirmar contraseña">
-                                <small class="text-danger" id="error-confirmPassword"></small>
-                            </div>
-                           
-                            <div class="row">
-                                <div class="col-6 mb-3">
-                                    <button type="submit" class="btn btn-dark w-100">Actualizar datos</button>
-                                </div>
-                            </div>
-                        </form>
-                        <form action="/usuarios/eliminar-cuenta" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');">
-                            <button type="submit" class="btn btn-danger w-100">ELIMINAR CUENTA</button>
-                        </form>
-                        <script src="/javascripts/perfil.js"></script>
+                            <form id="form-perfil" action="/usuarios/perfil" method="POST">
+                                <% errors.forEach(error=> { %>
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= error.msg %>
+                                    </div>
+                                    <% }) %>
+                                        <% if (successMessage) { %>
+                                            <div class="alert alert-success" role="alert">
+                                                <%= successMessage %>
+                                            </div>
+                                            <% } %>
+                                                <div class="row mb-3">
+                                                    <div class="col-12 col-md-6 mb-3">
+                                                        <label for="name" class="form-label">Nombre</label>
+                                                        <input type="text" name="name" class="form-control <%= locals.errors && errors.name ? 'is-invalid' : null %>" id="name" value="<%= locals.old && old.name ? old.name : null %>" />
+                                                        <small class="text-danger ms-2" id="error-name"></small>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="surname" class="form-label">Apellido</label>
+                                                        <input type="text" name="surname" class="form-control <%= locals.errors && errors.surname ? 'is-invalid' : null %>" id="surname" value="<%= locals.old && old.surname ? old.surname : null %>" />
+                                                        <small class="text-danger" id="error-surname"></small>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Correo electrónico</label>
+                                                    <input type="email" name="email" class="form-control <%= locals.errors && errors.email ? 'is-invalid' : null %>" id="email" placeholder="name@example.com" value="<%= locals.old && locals.old.email ? locals.old.email : null %>" />
+                                                    <small class="text-danger" id="error-email"></small>
+                                                </div>
+                                                <div class="col-12 mb-3">
+                                                    <label for="password" class="form-label">Contraseña</label>
+                                                    <div class="input-group">
+                                                        <input type="password" name="password" class="form-control <%= locals.errors && errors.password ? 'is-invalid' : null %>" id="password">
+                                                        <span class="input-group-text"><i id="button-eye2" class="fa-regular fa-eye"></i></span>
+                                                    </div>
+                                                    <small class="text-danger" id="error-password"></small>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 mb-3">
+                                                        <button type="submit" class="btn btn-dark w-100">Actualizar datos</button>
+                                                    </div>
+                                                    <div class="col-6 mb-3">
+                                                        <form action="/usuarios/eliminar-cuenta" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');">
+                                                            <button type="submit" class="btn btn-danger w-100">ELIMINAR CUENTA</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                            </form>
+
+                            <script src="/javascripts/perfil.js"></script>
+                            <script>
+                                document.getElementById('button-eye2').addEventListener('click', function () {
+                                    this.classList.toggle("fa-eye");
+                                    this.classList.toggle("fa-eye-slash");
+                                    var passwordInput = document.getElementById('password');
+                                    passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+                                });
+                            </script>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </main>
-
-    <%- include('../partials/footer.ejs') %>
-
-</body>
+            </main>
+            <%- include('../partials/footer.ejs') %>
+    </body>
 </html>
+
+<script>
+    console.log('perfil');
+    const $ = (id) => document.getElementById(id);
+    const exRegEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+
+    $('name').addEventListener('focus', function () {
+        this.classList.remove('is-invalid');
+    });
+
+    $('surname').addEventListener('focus', function () {
+        this.classList.remove('is-invalid');
+    });
+
+    $('email').addEventListener('focus', function () {
+        this.classList.remove('is-invalid');
+    });
+
+    $('password').addEventListener('focus', function () {
+        this.classList.remove('is-invalid');
+    });
+
+    $('name').addEventListener('blur', function () {
+        switch (true) {
+            case !this.value:
+                this.classList.add('is-invalid');
+                $('error-name').innerHTML = "El nombre es requerido";
+                break;
+            case this.value.length < 2:
+                this.classList.add('is-invalid');
+                $('error-name').innerHTML = "El nombre requiere mínimo 2 caracteres";
+                break;
+            default:
+                this.classList.remove('is-invalid');
+                $('error-name').innerHTML = null;
+                break;
+        }
+    });
+
+    $('surname').addEventListener('blur', function () {
+        switch (true) {
+            case !this.value:
+                this.classList.add('is-invalid');
+                $('error-surname').innerHTML = "El apellido es requerido";
+                break;
+            case this.value.length < 2:
+                this.classList.add('is-invalid');
+                $('error-surname').innerHTML = "El apellido requiere mínimo 2 caracteres";
+                break;
+            default:
+                this.classList.remove('is-invalid');
+                $('error-surname').innerHTML = null;
+                break;
+        }
+    });
+
+    $('email').addEventListener('blur', function () {
+        switch (true) {
+            case !this.value:
+                this.classList.add('is-invalid');
+                $('error-email').innerHTML = "El email es requerido";
+                break;
+            case !exRegEmail.test(this.value):
+                this.classList.add('is-invalid');
+                $('error-email').innerHTML = "Email con formato inválido";
+                break;
+            default:
+                this.classList.remove('is-invalid');
+                $('error-email').innerHTML = null;
+                break;
+        }
+    });
+
+    $('password').addEventListener('blur', function () {
+        switch (true) {
+            case !this.value:
+                this.classList.add('is-invalid');
+                $('error-password').innerHTML = "La contraseña es requerida";
+                break;
+            case this.value.length < 8:
+                this.classList.add('is-invalid');
+                $('error-password').innerHTML = "La contraseña debe tener al menos 8 caracteres";
+                break;
+            case !/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}/.test(this.value):
+                this.classList.add('is-invalid');
+                $('error-password').innerHTML = "La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial";
+                break;
+            default:
+                this.classList.remove('is-invalid');
+                $('error-password').innerHTML = null;
+                break;
+        }
+    });
+
+    $('form-perfil').addEventListener('submit', function (e) {
+        e.preventDefault(); 
+
+        let error = false;
+
+       
+        const name = $('name');
+        const surname = $('surname');
+        const email = $('email');
+        const password = $('password');
+
+        if (!name.value) {
+            name.classList.add('is-invalid');
+            $('error-name').innerHTML = "El nombre es requerido";
+            error = true;
+        }
+
+        if (!surname.value) {
+            surname.classList.add('is-invalid');
+            $('error-surname').innerHTML = "El apellido es requerido";
+            error = true;
+        }
+
+        if (!email.value) {
+            email.classList.add('is-invalid');
+            $('error-email').innerHTML = "El email es requerido";
+            error = true;
+        } else if (!exRegEmail.test(email.value)) {
+            email.classList.add('is-invalid');
+            $('error-email').innerHTML = "Email con formato inválido";
+            error = true;
+        }
+
+        if (!password.value) {
+            password.classList.add('is-invalid');
+            $('error-password').innerHTML = "La contraseña es requerida";
+            error = true;
+        } else if (password.value.length < 8) {
+            password.classList.add('is-invalid');
+            $('error-password').innerHTML = "La contraseña debe tener al menos 8 caracteres";
+            error = true;
+        } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}/.test(password.value)) {
+            password.classList.add('is-invalid');
+            $('error-password').innerHTML = "La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial";
+            error = true;
+        }
+
+        if (!error) {
+            this.submit(); 
+        } else {
+            $('msg-error').hidden = false;
+        }
+    });
+</script>

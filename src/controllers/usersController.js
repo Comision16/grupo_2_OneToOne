@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator")
 
 const User = require("../data/user");
 const {hashSync} = require('bcryptjs')
+
 const db= require('../database/models')
 module.exports={
     
@@ -86,61 +87,59 @@ module.exports={
                 }
     
                 const changePasswordRequested = req.query.change_password === 'true';
-                
-                // Renderizar la vista y pasar las variables necesarias
-                return res.render('users/perfil', { user, changePasswordRequested, errors: [], successMessage: "" });
+                console.log("Datos del usuario:", user);
+    
+              
+                return res.render('users/perfil', {
+                    user,
+                    changePasswordRequested,
+                    errors: req.session.errors || [],
+                    successMessage: req.session.successMessage || "",
+                    old: {
+                        name: user.name,
+                        surname: user.surname,
+                        email: user.email
+                    }
+                })
             })
             .catch(error => {
                 console.error(error);
                 return res.status(500).send("Error interno del servidor");
             });
+            
     },
-    
-    actualizarPerfil: (req, res) => {
+   
+    actualizarPerfil: async (req, res) => {
         const userId = req.session.userLogin.id;
-        const { name, surname, email, password, confirmPassword } = req.body;
+        const { name, surname, email, password } = req.body;
     
-        // Realiza la validación de los campos del formulario
-        const errors = validationResult(req); // Importa validationResult desde express-validator
-        if (!errors.isEmpty()) {
-            return res.render('users/perfil', { errors: errors.array(), user: req.session.userLogin, changePasswordRequested: false, successMessage: "" });
+        try {
+            let user = await db.users.findByPk(userId);
+    
+            if (!user) {
+                return res.status(404).send("Usuario no encontrado");
+            }
+    
+           
+            if (name) user.name = name;
+            if (surname) user.surname = surname;
+            if (email) user.email = email;
+            if (password) {
+                
+                const hashedPassword = hashSync(password, 10); 
+                user.password = hashedPassword;
+            }
+    
+           
+            await user.save();
+    
+            
+            req.session.successMessage = "Datos actualizados correctamente"; 
+            return res.redirect('/usuarios/perfil');
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send("Error interno del servidor");
         }
-    
-        // Si no hay errores, continúa con la actualización del perfil
-        // Encripta la contraseña antes de guardarla (si se proporciona)
-        let hashedPassword = null;
-        if (password && password.trim() !== '') {
-            hashedPassword = hashSync(password.trim(), 10);
-        }
-    
-        db.users.findByPk(userId)
-            .then(user => {
-                if (!user) {
-                    return res.status(404).send("Usuario no encontrado");
-                }
-    
-                // Actualiza los datos del usuario
-                user.name = name;
-                user.surname = surname;
-                user.email = email;
-    
-                // Actualiza la contraseña solo si se proporciona una nueva
-                if (hashedPassword) {
-                    user.password = hashedPassword;
-                }
-    
-                // Guarda los cambios en la base de datos
-                return user.save();
-            })
-            .then(updatedUser => {
-                // Redirige o envía una respuesta de éxito con un mensaje
-                const successMessage = "Datos guardados exitosamente"; // Define el mensaje de éxito aquí
-                return res.render('users/perfil', { user: updatedUser, successMessage, changePasswordRequested: false, errors: [] });
-            })
-            .catch(error => {
-                console.error(error);
-                return res.status(500).send("Error interno del servidor");
-            });
     },
     eliminarCuenta: (req, res) => {
         const userId = req.session.userLogin.id;
@@ -151,13 +150,13 @@ module.exports={
                     return res.status(404).send("Usuario no encontrado");
                 }
     
-                // Elimina al usuario de la base de datos
+              
                 return user.destroy();
             })
             .then(() => {
-                // Redirige a la página de inicio o muestra un mensaje de éxito
-                req.session.destroy(); // También puedes destruir la sesión del usuario
-                return res.redirect('/'); // Cambia esto a la URL a la que quieras redirigir
+               
+                req.session.destroy(); 
+                return res.redirect('/'); 
             })
             .catch(error => {
                 console.error(error);

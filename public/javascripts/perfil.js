@@ -18,9 +18,7 @@ $('password').addEventListener('focus', function () {
     this.classList.remove('is-invalid');
 });
 
-$('confirmPassword').addEventListener('focus', function () {
-    this.classList.remove('is-invalid');
-});
+
 
 $('name').addEventListener('blur', function () {
     switch (true) {
@@ -94,28 +92,8 @@ $('password').addEventListener('blur', function () {
     }
 });
 
-$('button-eye').addEventListener('click', function () {
-    this.classList.toggle("fa-eye");
-    this.classList.toggle("fa-eye-slash");
-    $('password').type = $('password').type === "password" ? "text" : "password";
-});
 
-$('confirmPassword').addEventListener('blur', function () {
-    switch (true) {
-        case !this.value:
-            this.classList.add('is-invalid');
-            $('error-confirmPassword').innerHTML = "La confirmación de la contraseña es requerida";
-            break;
-        case this.value !== $('password').value:
-            this.classList.add('is-invalid');
-            $('error-confirmPassword').innerHTML = "Las contraseñas no coinciden";
-            break;
-        default:
-            this.classList.remove('is-invalid');
-            $('error-confirmPassword').innerHTML = null;
-            break;
-    }
-});
+
 
 
 $('form-perfil').addEventListener('submit', function (e) {
@@ -128,7 +106,7 @@ $('form-perfil').addEventListener('submit', function (e) {
     const surname = $('surname');
     const email = $('email');
     const password = $('password');
-    const confirmPassword = $('confirmPassword');
+  
 
     if (!name.value) {
         name.classList.add('is-invalid');
@@ -166,15 +144,7 @@ $('form-perfil').addEventListener('submit', function (e) {
         error = true;
     }
 
-    if (!confirmPassword.value) {
-        confirmPassword.classList.add('is-invalid');
-        $('error-confirmPassword').innerHTML = "La confirmación de la contraseña es requerida";
-        error = true;
-    } else if (confirmPassword.value !== password.value) {
-        confirmPassword.classList.add('is-invalid');
-        $('error-confirmPassword').innerHTML = "Las contraseñas no coinciden";
-        error = true;
-    }
+ 
 
     if (!error) {
         this.submit(); // Envía el formulario si no hay errores

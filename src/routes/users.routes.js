@@ -14,21 +14,9 @@ router.post('/registro', userRegisterValidator, processRegister);
 router.get('/salir', logout);
 
 // Definición única para la ruta /perfil
-router.get('/perfil', perfilValidator, (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.render('users/perfil', { errors: errors.array(), user: req.session.userLogin, changePasswordRequested: false, successMessage: "" });
-    }
-    next();
-}, perfil);
+router.get('/perfil', perfilValidator, perfil);
 
-router.post('/perfil', perfilValidator, (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.render('users/perfil', { errors: errors.array(), user: req.session.userLogin, changePasswordRequested: false, successMessage: "" });
-    }
-    next();
-}, actualizarPerfil);
+router.post('/perfil', perfilValidator, actualizarPerfil);
 
 router.post('/eliminar-cuenta', eliminarCuenta);
 
