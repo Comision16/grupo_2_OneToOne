@@ -29,7 +29,7 @@
                                         <th>Apellido</th>
                                         <th>Email</th>
                                         <th>Rol</th>
-                                       
+
                                         <th>Informacion</th>
                                     </tr>
                                 </thead>
@@ -49,29 +49,36 @@
 
                                             <td>
 
-                                                <select onchange="onChangeRole(event,'<%=user.id %>')" class="form-select" name="role">
+                                                <select onchange="confirmChangeRole(event, '<%=user.id %>')" class="form-select" name="role">
                                                     <% roles.forEach(role => { %>
-                                                        <option value="<%= role.id %>" <%=user.roleId===role.id ? 'selected' : '' %>
-                                                            ><%= role.name %></option>
-                                                       
-                                                        
+                                                        <option value="<%= role.id %>" <%= user.roleId === role.id ? 'selected' : '' %>>
+                                                            <%= role.name %>
+                                                        </option>
                                                     <% }) %>
-                                                  
                                                 </select>
-                                               
+                                                
+                                                <script>
+                                                    function confirmChangeRole(event, userId) {
+                                                        if (confirm("¿Estás seguro de cambiar el rol?")) {
+                                                            onChangeRole(event, userId);
+                                                        } else {
+                                                           
+                                                        }
+                                                    }
+                                                </script>
+
 
                                             </td>
                                             <td>
                                                 <!-- Formulario para eliminar el usuario -->
-                                                <form action="/admin/users/<%= user.id %>?_method=DELETE" method="POST">
+                                                <form     action="/admin/users/<%= user.id %>?_method=DELETE" method="POST">
                                                     <!-- Agregar el campo oculto para method override -->
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button type="submit" class="btn btn-danger"
                                                         onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Eliminar</button>
                                                 </form>
                                             </td>
-                                            <td><a class="btn btn-danger" target="_blank" rel="nofollow"
-                                                    href="<%= user.detail%>">info</a></td>
+                                     
                                         </tr>
                                         <% }); %>
 
@@ -83,21 +90,24 @@
             </main>
 
             <%- include('./partials/scripts') %>
-            <script>
-                const  onChangeRole =  async (e,id) => {
-                const roleId= e.target.value
-                    try {
-                        const response= await fetch(`http://localhost:3000/apis/users/${id}/role?role=${roleId}`, {
-                            method:'PUT'
-                        })
-                        const result= await response.json()
-                        console.log(result);
+                <script>
+                    const onChangeRole = async (e, id) => {
+                        const roleId = e.target.value
+                        try {
+                            const response = await fetch(`http://localhost:3000/apis/users/${id}/role?role=${roleId}`, {
+                                method: 'PUT'
+                            })
+                            const result = await response.json()
+                            console.log(result);
 
-                    } catch (error) {
-                        console.log(error);
+                        } catch (error) {
+                            console.log(error);
+                        }
                     }
-                }
-            </script>
+                </script>
+           
+
+
     </body>
 
 </html>

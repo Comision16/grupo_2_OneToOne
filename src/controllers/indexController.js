@@ -25,6 +25,17 @@ module.exports = {
                 include: ['category', 'colors', 'sizes'],
             })
             .then(products => {
+                return res.render('indexDashboard', {
+                    products
+                });
+            })
+            .catch(error => console.log(error));
+    },
+    productos: (req, res) => {
+        db.products.findAll({
+                include: ['category', 'colors', 'sizes'],
+            })
+            .then(products => {
                 return res.render('dashboard', {
                     products
                 });
