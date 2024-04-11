@@ -23,6 +23,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.9.2",
+    "node-fetch": "^2.7.0",
     "sequelize": "^6.37.1"
   },
   "description": "Nuestro sitio brindara  productos de indumentaria a la audiencia al Estilo Urbano. Se trata de una forma de vestir que es capaz de expresar la personalidad de cada individuo y además es cómoda. Es un estilo juvenil que te permite combinar diferentes marcas, colores y todo tipo de accesorios. Es una moda diseñada para soportar el ritmo de la vida cotadina.",
@@ -30,6 +31,9 @@
   "license": "ISC",
   "keywords": [],
   "nodemonConfig": {
-    "ignore": ["public/javascripts/*.js", "src/data/*json"]
+    "ignore": [
+      "public/javascripts/*.js",
+      "src/data/*json"
+    ]
   }
 }
