@@ -149,6 +149,7 @@ module.exports = {
             })
             .catch(error => console.log(error));
     },
+    
     updateOrderStatus: async (req, res) => {
         try {
             console.log('Datos de la orden recibidos:', req.body);
