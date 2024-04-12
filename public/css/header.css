@@ -221,10 +221,14 @@ transition: color 0.3s;
 }
 
 .section-right {
-  display: inline-block;
-  left: 23%;
-  top: -100px;
-  bottom: 200px;
+  
+display: inline-block;
+  
+left: 23%;
+  
+top: -100px;
+  
+bottom: 200px;
 }
 
 .element{

@@ -214,7 +214,98 @@
             <a href="#contenedorInfo2">•</a>
             <a href="#contenedorInfo3">•</a>
         </div>
+     <div class ="contenerdorchat ">
+            <i class="fas fa-comment-dots" onclick="openChatModal()"></i>
+        </div>
+            <!-- Ventana modal -->
+            <div id="chatModal" class="modal">
+                <div class="modal-content" >
+                    <span class="close" onclick="closeChatModal()">&times;</span>
+                    <!-- Contenido del chat -->
+                    <div class="chat-container ">
+                        <div  class=" logo-chat">
+                        <img src="/img/home/logoHome.png"alt="portadachat" width="14%">
+                        <span class="logo-text">ONE TO ONE</span>
+                    </div>
+                        <div class="chat-box" id="chat-box"></div>
+                       
+                        <textarea id="user-input" placeholder="Escribe un mensaje..."></textarea>
+                        <button onclick="sendMessage()">Enviar</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Script para la funcionalidad del chat y la ventana modal -->
+            <script>
+                // Función para abrir la ventana modal
+                function openChatModal() {
+                    document.getElementById('chatModal').style.display = 'block';
+                }
+            
+                // Función para cerrar la ventana modal
+                function closeChatModal() {
+                    document.getElementById('chatModal').style.display = 'none';
+                }
+            
+                // Resto del código para el chat (sendMessage, appendMessage, etc.)
+               
+                const chatBox = document.getElementById('chat-box');
+                const userInput = document.getElementById('user-input');
+            
+                function sendMessage() {
+                    const message = userInput.value.trim();
+                    if (message !== '') {
+                        appendMessage('user', message);
+                        userInput.value = '';
+                        respondToMessage(message);
+                    }
+                }
+            
+                function appendMessage(sender, message) {
+                    const messageElement = document.createElement('div');
+                    messageElement.classList.add('message', sender);
+                    messageElement.textContent = message;
+                    chatBox.appendChild(messageElement);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }
+            
+                function respondToMessage(message) {
+                    const response = generateResponse(message);
+                    appendMessage('bot', response);
+                }
+                function generateResponse(message) {
+            const cleanMessage = message.toLowerCase().replace(/[¿?]/g, '').trim();
+            const conocimiento = {
+                'buen dia': '¡Hola! ¿En qué puedo ayudarte hoy?',
+                'qué es esto': 'Este es un chat one to one para brindarte atención personalizada.',
+                'cómo puedo ayudarte': 'Puedo ayudarte en una variedad de temas. ¿En qué necesitas asistencia?',
+                'buenas tardes': '¡Hola! ¿En qué puedo ayudarte hoy?',
+                'qué prendas envían a domicilio': 'Enviamos una amplia variedad de prendas a domicilio. ¿Tienes alguna preferencia en particular?',
+                'cuáles son sus horarios de atención': 'Nuestros horarios de atención son de lunes a viernes de 9am a 6pm.',
+                'quiero varias prendas': 'Bueno, ¿podrías especificar qué tipo de prendas estás buscando?',
+            };
+            console.log('Mensaje limpio:', cleanMessage);
+            
+            const conocimientoKeys = Object.keys(conocimiento);
+            console.log('Claves de conocimiento:', conocimientoKeys);
+            
+            for (const key of conocimientoKeys) {
+               
+                const regex = new RegExp(key, 'i');
+                if (regex.test(cleanMessage)) {
+                    return conocimiento[key];
+                }
+            }
         
+            return 'Soy un bot diseñado para ayudarte en lo que necesites.';
+        }
+        
+             
+            
+        
+               
+            </script>
+       
 
     </main>
     <!-- //FOOTER PARTIALS-->
