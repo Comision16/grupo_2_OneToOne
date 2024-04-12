@@ -39,7 +39,7 @@
                      <h5>TOTAL A PAGAR: $<span id="total"></span></h5>
 
                   </div>
-                  <button class="btn btn-dark buyHidden" onclick="createOrder()">Comprar</button>
+                  <button class="btn btn-dark buyHidden" onclick="sendCart('<%=locals.userLogin ? locals.userLogin.id : null%>')">Finalizar compra</button>
 
                </div>
                

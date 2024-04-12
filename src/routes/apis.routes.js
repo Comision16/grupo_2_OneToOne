@@ -3,6 +3,7 @@ const { getAllPorducts, getOneProducts } = require('../controllers/productsContr
 const { getAllUsers, getOneUsers, changeRole } = require('../controllers/productsController/apis/usersApi');
 const upload = require('../middlewares/upload');
 const { addImageProduct, removeImageProduct, updateImageMainProduct } = require('../controllers/productsController/apis/imagesApiController');
+const { storeCart } = require('../controllers/productsController/apis/cartApiContrroller');
 const router = express.Router();
 
 /* /apis */
@@ -20,6 +21,9 @@ router.put('/users/:id/role', changeRole)
 router.post('/images/:id', upload.any(), addImageProduct)
 router.delete('/images',removeImageProduct)
 router.post('/images/:id/main',upload.any(),updateImageMainProduct)
+
+//cart
+router.post('/cart', storeCart)
 
 
 
