@@ -126,6 +126,13 @@ $('password2').addEventListener('blur', function () {
             break;
     }
 });
+ 
+$('button-eye2').addEventListener('click', function () {
+    this.classList.toggle("fa-eye");
+    this.classList.toggle("fa-eye-slash");
+    $('password2').type = $('password2').type === "password" ? "text" : "password";
+});
+
 
 
 

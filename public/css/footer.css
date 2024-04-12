@@ -142,8 +142,11 @@ span{
        display: flex;
        flex-direction: column;
    }
+   .listas__del__footer_navegacion{
+   margin-left: -15%;
+   }
    .contacto_ubicacion{
-       margin-left: 45px;
+       margin-left: -3px;
        display: flex;
        flex-direction: column;
     } 
@@ -166,13 +169,13 @@ span{
    
     .footer__redes{
        position: relative;
-       margin-top: 0;
        left: 35px; ;
     }
     .listas_nuevas_del_footer{
         display: none;
     }
     .redes_sociales_del_footer{
+      margin-left: 15%;
        margin-top: 0;
        margin-right: 8%;
     }
@@ -184,6 +187,10 @@ span{
     
    }
    @media (min-width: 1440px){
+      .footer__links{
+         margin-left: 15%;
+      }
+      
     .contacto_ubicacion{
        display: flex;
        margin-inline: 200px;
@@ -197,9 +204,10 @@ span{
        display: none;
     }
     .redes_sociales_del_footer{
-      margin-left: -45%;
+      margin-left: -70%;
    }
     .recomendacines{
-      margin-left: -1%;
+      margin-left: 77%;
+      margin-top: -9%;
    }
    }
