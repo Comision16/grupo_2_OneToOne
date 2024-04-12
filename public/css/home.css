@@ -336,7 +336,113 @@
     margin-top: 40px;
     margin-left: 20px;
 }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
 
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para el chat */
+.chat-container {
+  
+    color:#000000;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #d108d1;
+    border-radius: 5px;
+}   .logo-container {
+    display: inline-block;
+    vertical-align: middle;
+}
+.logo-container img {
+    width: 100px;
+    height: auto; 
+}
+.logo-text {
+   
+    color: white;
+    font-size: 16px;
+    font-style: italic; 
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px; 
+    color: rgb(7, 7, 7); 
+    font-weight: bold; 
+
+}
+
+
+.chat-box {
+    
+    color: #0a0a0a;
+    height: 300px;
+    overflow-y: scroll;
+    border: 1px solid #070707;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.buttonchat {
+    padding: 8px 16px;
+    background-color: #0a0a0a;
+    color: #f8f3f3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #99088d;
+}
+.contenerdorchat{
+    font-size: 5rem;
+    display: flex;
+    justify-content: center; 
+    align-items: center; /
+
+}
+.contenerdorchat i {
+    font-size: 50px; 
+    cursor: pointer; 
+    color: #0c0c0c; 
+}
+
+
+.contenerdorchat i:hover {
+    color: #eb0aeb; 
+    
+}
 /*---------TABLEET-----------------*/
 @media (min-width: 768px) {
 
