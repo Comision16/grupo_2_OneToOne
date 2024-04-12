@@ -2,6 +2,7 @@
 <html lang="es">
 <!-- //HEAD PARTIALS-->
 <%- include('./partials/head',{ title:'Carrito' }) %>
+<script src="../controllers/indexController.js"></script>
 
    <body>
       <!-- //HEADER PARTIALS-->
@@ -25,6 +26,7 @@
                         <a href="#img_pago">METODOS DE PAGO</a>
                         <button class="btn btn-danger btn-sm buyHidden" onclick="emptyCart()">Vaciar carrito</button>
                      </div>
+                   
                      <hr>
    
                      <div class="img_pago" id="img_pago">
@@ -37,7 +39,7 @@
                      <h5>TOTAL A PAGAR: $<span id="total"></span></h5>
 
                   </div>
-                  <button class="btn btn-dark buyHidden">Ir a pagar</button>
+                  <button class="btn btn-dark buyHidden" onclick="createOrder()">Comprar</button>
 
                </div>
                
@@ -52,6 +54,7 @@
 
          <!-- //FOOTER PARTIALS-->
          <%- include('./partials/footer') %>
+         <script src="../controllers/indexController.js"></script>
    </body>
 
 </html>

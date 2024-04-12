@@ -148,5 +148,57 @@ module.exports = {
                 });
             })
             .catch(error => console.log(error));
+    },
+    updateOrderStatus: async (req, res) => {
+        try {
+            console.log('Datos de la orden recibidos:', req.body);
+          const { id } = req.params;
+          const { statusId } = req.body;
+    
+          
+          const order = await db.Order.findByPk(id);
+    
+       
+          if (!order) {
+            return res.status(404).send("Pedido no encontrado");
+          }
+    
+        
+          order.statusId = statusId;
+          await order.save();
+    
+      
+          res.status(200).send("Estado del pedido actualizado correctamente");
+        } catch (error) {
+          console.error(error);
+          res.status(500).send("Error interno del servidor");
+        }
+      }, createOrder: async (req, res) => {
+        try {
+         
+            const { usersId, total } = req.body;
+    
+           
+            const defaultStatusId = 1;
+    
+        
+            if (!usersId || !total) {
+                return res.status(400).send('Faltan datos requeridos para crear la orden');
+            }
+    
+           
+            const newOrder = await db.Order.create({
+                usersId: usersId,
+                total: total,
+                statusId: defaultStatusId,
+                
+            });
+    
+            res.status(201).json({ orderId: newOrder.id });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error al crear la orden');
+        }
     }
+      
 }

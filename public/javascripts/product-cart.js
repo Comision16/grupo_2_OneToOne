@@ -71,8 +71,6 @@ const showProductsInCart = (cart) => {
 
 }
 
-
-
 function incrementQuantity(id) {
    const counter = document.getElementById('item-counter' + id)
    let currentValue = parseInt(counter.textContent);
@@ -187,3 +185,4 @@ const emptyCart = () => {
    document.getElementById('showTotal').innerHTML = null
 
 }  
+
