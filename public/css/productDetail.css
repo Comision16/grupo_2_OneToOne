@@ -273,7 +273,11 @@ html, body {
     opacity: 1; 
 }
 
-
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: transparent; /* Cambia el color de fondo a transparente */
+    outline: none; /* Elimina el contorno */
+}
 .compartit_detalles_del_producto {
     justify-content: center;
     text-align: center;
