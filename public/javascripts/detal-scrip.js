@@ -7,13 +7,14 @@ document.addEventListener("DOMContentLoaded", function() {
             const indice = imgSecundaria.getAttribute("data-index");
             const nuevaImagenSrc = imgSecundaria.getAttribute("src");
 
+            // Guarda la imagen actual principal
+            const imagenAnteriorSrc = imagenPrincipal.src;
+
+            // Establece la nueva imagen principal
             imagenPrincipal.src = nuevaImagenSrc;
 
-            // Ahora, movemos la imagen anterior principal al lugar de la imagen secundaria
-            const imagenAnteriorPrincipal = document.querySelector(".contenedor_detalles_carrusel .imagen-secundaria");
-            const imagenAnteriorSrc = imagenAnteriorPrincipal.getAttribute("src");
-            imagenAnteriorPrincipal.setAttribute("src", nuevaImagenSrc);
-            imgSecundaria.setAttribute("src", imagenAnteriorSrc);
+            // Establece la nueva imagen secundaria como la imagen principal anterior
+            imgSecundaria.src = imagenAnteriorSrc;
         });
     });
 });
