@@ -13,6 +13,8 @@ module.exports = async (req, res) => {
             ] 
         });
 
+     
+
         const colorsPromise = db.colors.findAll({
             order: [['name']]
         });
@@ -21,13 +23,25 @@ module.exports = async (req, res) => {
             order: [['name']]
         });
 
-        const [product, colorsdb, sizesdb] = await Promise.all([productPromise, colorsPromise, sizesPromise]);
-        
-        return res.render('products/productDetail', {
-            colorsdb,
-            sizesdb,
-            product
-        });
+        const [product, colorsdb, sizesdb,] = await Promise.all([productPromise, colorsPromise, sizesPromise]);
+       
+        db.products.findAll({
+            where : {
+                categoryId : product.categoryId
+            },
+            limit : 20
+        }).then(productsRelated => {
+            return res.render('products/productDetail', {
+                colorsdb,
+                sizesdb,
+                product,
+                productsRelated
+            });
+        })
+
+
+
+  
     } catch (error) {
         console.log(error);
         return res.status(500).send('Error interno del servidor');
